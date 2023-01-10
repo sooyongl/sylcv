@@ -1,0 +1,197 @@
+---
+name: Sooyong
+surname: Lee
+position: "PhD"
+# profilepic: "img/kate.jpeg"
+address: "Educational Psychology, The University of Texas at Austin"
+phone: +1 736 865 0618
+# www: mariecurie.com
+email: "sooyongl09@gmail.com"
+# twitter: DontLookUpFilm
+github: sooyongl/sylcv
+# linkedin: mariecurie
+aboutme: "I have recently discovered Comet Dibiasky that is approximately 10-15km in size, and based on my orbital calculations is estimated to strike Earth in 6 months and 14 days"
+date: "`r format(Sys.time(), '%B %Y')`"
+headcolor: 414141
+output: 
+  vitae::awesomecv:
+    page_total: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+library(here)
+library(tidyverse)
+library(googlesheets4)
+```
+
+```{r functions}
+# orcid_data <- do.call("rbind",
+#   rorcid::orcid_educations("0000-0002-2140-5352")$`0000-0002-2140-5352`$`affiliation-group`$summaries
+# )
+# orcid_data %>%
+#   detailed_entries(
+#     what = `education-summary.role-title`,
+#     when = glue::glue("{`education-summary.start-date.year.value`} - {`education-summary.end-date.year.value`}"),
+#     with = `education-summary.organization.name`,
+#     where = `education-summary.organization.address.city`
+#   )
+
+readGoogleSheets <- function(sheet_name) {
+  
+  cvInfo <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/10ye0YoRjDaCrN4nc1YiFXO8DRtVSyTg1B4z_w8icLtI/edit#gid=0", sheet = sheet_name)
+  
+  cvInfo
+}
+
+```
+
+# Professional Summary
+
+<!--  * I poisoned myself doing research. -->
+<!--  * I was the first woman to win a Nobel prize -->
+<!--  * I was the first person and only woman to win a Nobel prize in two different sciences. -->
+
+This is a good opportunity to introduce yourself professionally and summarise
+why your skills are well suited to the job you are applying for!
+
+
+# Education
+<!-- I am a Teaching Assistant in the Astronomy Department and am passionate about playing a positive role in shaping the new generation of astronomers.  -->
+
+
+```{r}
+# library(tibble)
+# tribble(
+#   ~ Degree, ~ Year, ~ Institution, ~ Where,
+#   "Informal studies", "1889-91", "Flying University", "Warsaw, Poland",
+#   "Master of Physics", "1893", "Sorbonne Université", "Paris, France",
+#   "Master of Mathematics", "1894", "Sorbonne Université", "Paris, France"
+# ) %>% 
+#    detailed_entries(Degree, Year, Institution, Where)
+readGoogleSheets("Education") %>% 
+  detailed_entries(what = Degree,
+                   when = Year,
+                   with = Institution,
+                   where = Location,
+                   why = Details)
+```
+
+# Research experience
+```{r}
+readGoogleSheets("Experience") %>% 
+  # filter(category == "poster") %>% 
+  vitae::detailed_entries(what = Name,
+                          when = Year,
+                          where = Position,
+                          with = note,
+                          why = Desc)
+```
+
+# Language skills
+```{r}
+# skills %>% 
+#   brief_entries(when = skill) # ,
+                # with = level)
+```
+
+\newpage
+
+
+# Publications
+
+```{r}
+# library(dplyr)
+# knitr::write_bib(c("vitae", "tibble"), "packages.bib")
+# 
+# bibliography_entries("packages.bib") %>%
+#   arrange(desc(author$family), issued)
+# 
+# bibliography_entries(here("papers.bib")) 
+```
+
+<!-- ## Another way to display publications is using R Markdown. You can also use latex commands throughout the document: -->
+
+\setlength{\leftskip}{0cm}
+**2021**
+
+\setlength{\leftskip}{1cm}
+Cory L. Cobb, Charles R. Martínez, Jr., **Sooyong Lee**, Tae Kyoung Lee, & Elma I. Lorenzo-Blanco, (2021). Acculturation trajectories differ by youth age at arrival and time in residency among Latino immigrant families in a US emerging immigrant context. *International Journal of Intercultural Relations*,  81, 79-93, DOI: [10.1016/j.ijintrel.2021.01.005](10.1016/j.ijintrel.2021.01.005).
+
+\setlength{\leftskip}{0cm}
+**2022**
+
+\setlength{\leftskip}{1cm}
+**Sooyong Lee** & Tiffany A. Whittaker, (2022). Comparison of Three Approaches to Class Enumeration in Growth Mixture Modeling when Time Structures are Variant Across Latent Classes. *Structural Equation Modeling: A Multidisciplinary Journal*,  29,	23-35, DOI:[10.1080/10705511.2021.1956320](10.1080/10705511.2021.1956320).
+
+
+Seung Choi, Sangdon Lim, Luping Niu, **Sooyong Lee**, Christina M. Schneider, Jay Lee, & Garron J.	(2022).	maat: An R Package for Multiple Administrations Adaptive Testing.	*Applied Psychological Measurement*,	46-1,	73-74, DOI:[10.1177/01466216211049212](10.1177/01466216211049212).
+
+**Sooyong Lee**, Suhwa Han, & Seung W. Choi	(2022).	DIF Detection With Zero-Inflation Under the Factor Mixture Modeling Framework. *Educational and Psychological Measurement*,	82-4,	678-704, DOI:[10.1177/00131644211028995](10.1177/00131644211028995).
+
+**Sooyong Lee** & Tiffany A. Whittaker (2022). Parallel Process Latent Growth Modeling with Multivariate Confounders/Suppressors. *Structural Equation Modeling: A Multidisciplinary Journal*, DOI:[10.1080/10705511.2022.2133774](10.1080/10705511.2022.2133774).
+
+**Sooyong Lee**, Kahyun Lee, & Tiffany A. Whittaker	(2022). Application of Associative Discrete-Time Survival Analysis Using Latent Transition Specification. *Structural Equation Modeling: A Multidisciplinary Journal*, DOI: [10.1080/10705511.2022.2138892](10.1080/10705511.2022.2138892)
+
+\setlength{\leftskip}{0cm}
+**2023**
+
+
+**Sooyong Lee**, Adam Sales, Hyeon-Ah Kang, & Tiffany A. Whittaker (2023).	Fully-Latent Principal Stratification. *The Annual Meeting of the Psychometric Society* (in print)
+
+
+# Program
+
+```{r}
+readGoogleSheets("Publication") %>% 
+  filter(category == "software") %>% 
+  vitae::detailed_entries(what = title,
+                          when = year,
+                          # where = Location, 
+                          # why = Details,
+                          with = author
+                          )
+```
+
+
+
+# Presentation
+
+```{r}
+readGoogleSheets("Presentation") %>% 
+  filter(category == "poster") %>% 
+  vitae::detailed_entries(what = title,
+                          when = year,
+                          where = Location, 
+                          with = author, 
+                          why = Details)
+```
+
+
+# Fellowship & Awards
+
+```{r}
+readGoogleSheets("Fellowship/Awards") %>% 
+  # filter(category == "poster") %>% 
+  vitae::detailed_entries(what = Type,
+                          when = Year,
+                          # where = Location, 
+                          # with = author, 
+                          why = Desc)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

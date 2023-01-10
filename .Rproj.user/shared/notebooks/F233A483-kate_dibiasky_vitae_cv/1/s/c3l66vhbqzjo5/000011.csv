@@ -1,0 +1,19 @@
+"0","# library(tibble)
+# tribble(
+#   ~ Degree, ~ Year, ~ Institution, ~ Where,
+#   ""Informal studies"", ""1889-91"", ""Flying University"", ""Warsaw, Poland"",
+#   ""Master of Physics"", ""1893"", ""Sorbonne Université"", ""Paris, France"",
+#   ""Master of Mathematics"", ""1894"", ""Sorbonne Université"", ""Paris, France""
+# ) %>% 
+#    detailed_entries(Degree, Year, Institution, Where)
+readGoogleSheets(""Education"") %>% 
+  detailed_entries(what = Degree,
+                   when = Year,
+                   with = Institution,
+                   where = Location,
+                   why = Details)
+"
+"2","[32mv[39m Reading from [36mCV_infolist[39m.
+"
+"2","[32mv[39m Range '[33m'Education'[39m'.
+"
