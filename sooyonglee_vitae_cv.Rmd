@@ -14,10 +14,11 @@ aboutme: ""
 date: "`r format(Sys.time(), '%B %Y')`"
 headcolor: 414141
 output: 
-#  vitae::awesomecv:
-#    page_total: true
-  vitae::moderncv:
-    theme: banking
+  vitae::awesomecv:
+    page_total: true
+    show_footer: true
+# vitae::moderncv:
+#   theme: banking
 ---
 
 ```{r setup, include=FALSE}
@@ -162,7 +163,7 @@ Seung Choi, Sangdon Lim, Luping Niu, **Sooyong Lee**, Christina M. Schneider, Ja
 
 \hangindent=2em
 \hangafter=1
-**Sooyong Lee**, Suhwa Han, & Seung Choi (2023). Bayesian MIMIC for DIF Detection under Violation of Equal Variance Assumption. *Educational and Psychological Measurement* (in review)
+**Sooyong Lee**, Suhwa Han, & Seung W. Choi (2023). Bayesian MIMIC for DIF Detection under Violation of Equal Variance Assumption. *Educational and Psychological Measurement* (in review)
 
 \hangindent=2em
 \hangafter=1
@@ -178,6 +179,64 @@ Tiffany A. Whittaker, Laura Stapleton & **Sooyong Lee** (2023). A Tutorial for O
 
 \setlength{\leftskip}{0cm}
 
+# Presentation
+
+```{r}
+# readGoogleSheets("Presentation") %>% 
+#   filter(category == "poster") %>% 
+#   vitae::detailed_entries(what = title,
+#                           when = year,
+#                           where = Location, 
+#                           with = author, 
+#                           why = Details)
+```
+
+\setlength{\leftskip}{0cm}
+**Poster**
+
+\setlength{\leftskip}{0.5cm}
+\hangindent=2em
+\hangafter=1
+Kejin Lee, **Sooyong Lee**, & Youngri Lee (2018-5). An Alternative Approach to Discrete-Time Survival Analysis for Meaningful Interpretation. Modern Modeling Methods conference (MMM), Storrs, CT.
+
+\hangindent=2em
+\hangafter=1
+**Sooyong Lee** & Sehee Hong (2018-7). Exploration of LCA conditions in Latent Class with Low Proportion. International Meeting of the Psychometric Society (IMPS), New York, NY.
+
+\hangindent=2em
+\hangafter=1
+**Sooyong Lee** & Tiffany A. Whittaker (2020-4). Comparison of Three Approaches to Class Enumeration in Growth Mixture Modeling when Time Structures are Variant Across Latent Classes. American Educational Research Association (AERA), Virtual.
+
+\hangindent=2em
+\hangafter=1
+**Sooyong Lee** & Suhwa Han (2020-7). Item selection and trait estimation methods in CAT with item leakage. International Meeting of the Psychometric Society (IMPS), College Park, MD.
+
+\hangindent=2em
+\hangafter=1
+**Sooyong Lee**, Suhwa Han, & Seung W. Choi (2021-4). DIF Detection with Zero-Inflation under the Mixture Modeling Framework. American Educational Research Association (AERA), Virtual.
+
+\setlength{\leftskip}{0cm}
+**Conference presentation**
+
+\setlength{\leftskip}{0.5cm}
+
+\hangindent=2em
+\hangafter=1
+Daniel Lewis & **Sooyong Lee** (2021-4). A Comparison of Two ESS Cut Score Estimation Algorithms. National Council on Measurement in Education (NCME), Baltimore, MD.
+
+\hangindent=2em
+\hangafter=1
+Garron Gianopulos, Jay Lee, Sangdon Lim, Luping Niu, **Sooyong Lee**, & Seung W. Choi (2022-4). The Impact of Item Pool Size and Item Pool Distribution on Student Ability Estimates for a Hybrid Interim-Summative CAT. National Council on Measurement in Education (NCME), San Diego, USA.
+
+\hangindent=2em
+\hangafter=1
+Jay Lee, M. Christina Schneider, Garron Gia, Luping Niu, **Sooyong Lee**, Sangdon Lim, Seung W. Choi (2022-4). The Impact of Item Pool Size and Item Pool Distribution on Student Ability Estimates for a Hybrid Interim-Summative CAT. National Council on Measurement in Education (NCME), San Diego, USA.
+
+\hangindent=2em
+\hangafter=1
+**Sooyong Lee**, Adam Sales, Hyeon-Ah Kang, & Tiffany A. Whittaker (2022-7). Fully-Latent Principal Stratiication. International Meeting of the Psychometric Society (IMPS), Bologna, Italy.
+
+\setlength{\leftskip}{0cm}
 
 # Program
 
@@ -193,19 +252,6 @@ readGoogleSheets("Publication") %>%
                           )
 ```
 
-
-
-# Presentation
-
-```{r}
-readGoogleSheets("Presentation") %>% 
-  filter(category == "poster") %>% 
-  vitae::detailed_entries(what = title,
-                          when = year,
-                          where = Location, 
-                          with = author, 
-                          why = Details)
-```
 
 
 # Fellowship & Awards
