@@ -8,9 +8,9 @@ phone: +1 736 865 0618
 # www: mariecurie.com
 email: "sooyongl09@gmail.com"
 # twitter: DontLookUpFilm
-github: sooyongl/sylcv
+github: sooyongl/
 # linkedin: mariecurie
-aboutme: "I have recently discovered Comet Dibiasky that is approximately 10-15km in size, and based on my orbital calculations is estimated to strike Earth in 6 months and 14 days"
+aboutme: ""
 date: "`r format(Sys.time(), '%B %Y')`"
 headcolor: 414141
 output: 
@@ -81,22 +81,32 @@ readGoogleSheets("Education") %>%
 # Research experience
 ```{r}
 readGoogleSheets("Experience") %>% 
-  # filter(category == "poster") %>% 
-  vitae::detailed_entries(what = Name,
+  vitae::detailed_entries(what = note,
                           when = Year,
                           where = Position,
-                          with = note,
+                          with = Name,
                           why = Desc)
 ```
 
-# Language skills
+# Teaching experience
+```{r}
+readGoogleSheets("Teaching") %>% 
+  vitae::detailed_entries(what = note,
+                          when = Year,
+                          where = Position,
+                          with = Name,
+                          why = Desc)
+```
+
+<!-- # Language skills -->
 ```{r}
 # skills %>% 
 #   brief_entries(when = skill) # ,
                 # with = level)
 ```
 
-\newpage
+
+<!-- \newpage -->
 
 
 # Publications
@@ -137,8 +147,19 @@ Seung Choi, Sangdon Lim, Luping Niu, **Sooyong Lee**, Christina M. Schneider, Ja
 \setlength{\leftskip}{0cm}
 **2023**
 
-
+\setlength{\leftskip}{1cm}
 **Sooyong Lee**, Adam Sales, Hyeon-Ah Kang, & Tiffany A. Whittaker (2023).	Fully-Latent Principal Stratification. *The Annual Meeting of the Psychometric Society* (in print)
+
+**Sooyong Lee**, Suhwa Han, & Seung Choi (2023). Bayesian MIMIC. *Educational and Psychological Measurement* (in review)
+
+Tiffany A. Whittaker, & **Sooyong Lee** (2023). Bayesian MIMIC. *Educational and Psychological Measurement* (in review)
+
+
+**Sooyong Lee**, Adam Sales, Hyeon-Ah Kang, & Tiffany A. Whittaker (2023).	Comparison in Small Sample sizes Fully-Latent Principal Stratification.  (in progress)
+
+**Sooyong Lee**, Adam Sales, Hyeon-Ah Kang, & Tiffany A. Whittaker (2023).	Multidimensional FLPS.  (in progress)
+
+\setlength{\leftskip}{0cm}
 
 
 # Program
@@ -148,8 +169,8 @@ readGoogleSheets("Publication") %>%
   filter(category == "software") %>% 
   vitae::detailed_entries(what = title,
                           when = year,
-                          # where = Location, 
-                          # why = Details,
+                          where = note,
+                          why = url,
                           with = author
                           )
 ```
@@ -174,11 +195,12 @@ readGoogleSheets("Presentation") %>%
 ```{r}
 readGoogleSheets("Fellowship/Awards") %>% 
   # filter(category == "poster") %>% 
-  vitae::detailed_entries(what = Type,
+  vitae::detailed_entries(#what = Type,
                           when = Year,
-                          # where = Location, 
-                          # with = author, 
-                          why = Desc)
+                          where = Type,
+                          with = Desc,
+                          # why = Type
+                          )
 ```
 
 
