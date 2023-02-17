@@ -39,8 +39,8 @@ for(R in fs::dir_ls("source")) {source(R)}
 I am a psychometrician with expertise in applying modern statistical theories and techniques. My research interests are in the development and application of statistical models such as such as structural equation modeling (SEM), multilevel modeling (MLM), and item response theory (IRT). Recently, I have focused on Bayesian estimation to model the relationships among variables.
 
 
-# Education
 
+# Education
 
 ```{r results='asis'}
 
@@ -48,13 +48,14 @@ readGoogleSheets("Education") %>%
   mk_entry(what = "Degree",
            when = "Year",
            with = "Institution",
-           where = "Location",
-           why = "Details")
+           where = "Location",entry_nm = "cveducation")
 
 ```
 
+\vspace{0em}
 
 # Research experience
+
 ```{r results = 'asis'}
 readGoogleSheets("Experience") %>% 
   mk_entry(what = "note",
@@ -64,8 +65,10 @@ readGoogleSheets("Experience") %>%
                           why = "Desc")
 ```
 
+\newpage
 
 # Teaching experience
+
 ```{r results = 'asis'}
 readGoogleSheets("Teaching") %>% 
   mk_entry(what = "note",
@@ -75,6 +78,7 @@ readGoogleSheets("Teaching") %>%
                           why = "Desc")
 ```
 
+\vspace{-2em}
 
 # Publications
 
@@ -157,9 +161,12 @@ readGoogleSheets("Software") %>%
                           when = "year",
                           where = "note",
                           with = "author",
-                          why = "url"
+                          why = "url",entry_nm = "cvsoftware"
+                            
                           )
 ```
+
+\vspace{-2em}
 
 # Fellowship & Awards
 
@@ -168,8 +175,10 @@ readGoogleSheets("FellowshipAwards") %>%
   mk_entry(
                           when = "Year",
                           where = "Type",
-                          with = "Desc"
+                          with = "Desc",
+                          entry_nm = "cvhonor"
                           )
+
 ```
 
 

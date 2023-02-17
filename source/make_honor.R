@@ -1,4 +1,4 @@
-mk_entry <- function(data, what=NA, when=NA, with=NA, where=NA, why=NA, more_why = NA, showcat = T, entry_nm = "cventry") {
+mk_newentry <- function(data, what=NA, when=NA, with=NA, where=NA, why=NA, more_why = NA, showcat = T, entry_nm = "cvhonor") {
   # data = a1
   cols <- c("what"=what, "when"=when, "with"=with, "where"=where, "why"=why, "more_why" = more_why)
   
@@ -75,6 +75,7 @@ mk_entry <- function(data, what=NA, when=NA, with=NA, where=NA, why=NA, more_why
     }
   }
   
+  
   out <- out %>% 
     mutate(why = why0) %>% 
     mutate(more_why = more_why0) %>% 
@@ -97,14 +98,12 @@ mk_entry <- function(data, what=NA, when=NA, with=NA, where=NA, why=NA, more_why
     ) %>% 
     pull(tex)
   
-  entry_nm <- ifelse(entry_nm == "cventry", "cventrie", entry_nm) 
-  
   out <- paste(out, collapse = "\n\n")
   out <- paste(
     c(paste0("\\begin{", entry_nm, "s}"),
       out,
       paste0("\\end{", entry_nm, "s}"),
-      collapse = "\n"))
+    collapse = "\n"))
   
   if(showcat) {
     
