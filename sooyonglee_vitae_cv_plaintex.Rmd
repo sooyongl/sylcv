@@ -10,6 +10,8 @@ linestretch: 1
 aboutme: ""
 date: "`r format(Sys.time(), '%B %Y')`"
 fontawesome: yes
+papersize: "letterpaper"
+headcolor: 414141
 # csl: apa-cv.csl # change this if you want to use other citation styles
 output:
   pdf_document:
@@ -25,8 +27,10 @@ library(vitae)
 library(here)
 library(tidyverse)
 library(googlesheets4)
-
+library(readxl)
 for(R in fs::dir_ls("source")) {source(R)}
+
+
 ```
 
 
@@ -160,7 +164,7 @@ readGoogleSheets("Software") %>%
 # Fellowship & Awards
 
 ```{r results = 'asis'}
-readGoogleSheets("Fellowship/Awards") %>%
+readGoogleSheets("FellowshipAwards") %>%
   mk_entry(
                           when = "Year",
                           where = "Type",
