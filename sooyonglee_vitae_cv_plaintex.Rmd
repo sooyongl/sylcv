@@ -1,0 +1,173 @@
+---
+name: Sooyong
+surname: Lee
+position: "PhD"
+address: "Educational Psychology, The University of Texas at Austin"
+phone: +1 737 865 0618
+email: "sooyongl09@gmail.com"
+github: sooyongl/
+linestretch: 1
+aboutme: ""
+date: "`r format(Sys.time(), '%B %Y')`"
+fontawesome: yes
+# csl: apa-cv.csl # change this if you want to use other citation styles
+output:
+  pdf_document:
+    latex_engine: xelatex
+    template: "awesome-me.tex"
+    keep_tex: true
+# orcid: 0000-
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+library(here)
+library(tidyverse)
+library(googlesheets4)
+
+for(R in fs::dir_ls("source")) {source(R)}
+```
+
+
+# Professional Summary
+
+I am a psychometrician with expertise in applying modern statistical theories and techniques. My research interests are in the development and application of statistical models such as such as structural equation modeling (SEM), multilevel modeling (MLM), and item response theory (IRT). Recently, I have focused on Bayesian estimation to model the relationships among variables.
+
+
+# Education
+
+
+```{r results='asis'}
+
+readGoogleSheets("Education") %>% 
+  mk_entry(what = "Degree",
+           when = "Year",
+           with = "Institution",
+           where = "Location",
+           why = "Details")
+
+```
+
+
+# Research experience
+```{r results = 'asis'}
+readGoogleSheets("Experience") %>% 
+  mk_entry(what = "note",
+                          when = "Year",
+                          where = "Position",
+                          with = "Name",
+                          why = "Desc")
+```
+
+
+# Teaching experience
+```{r results = 'asis'}
+readGoogleSheets("Teaching") %>% 
+  mk_entry(what = "note",
+                          when = "Year",
+                          where = "Position",
+                          with = "Name",
+                          why = "Desc")
+```
+
+
+# Publications
+
+\setlength{\leftskip}{0cm}
+**2021**
+
+\setlength{\leftskip}{0.5cm}
+
+```{r results='asis'}
+a1 <- readGoogleSheets("Publication") %>%
+  filter(type == "article")
+
+a1 %>% 
+  filter(year == "2021") %>%
+  mk_pub()
+```
+
+\setlength{\leftskip}{0cm}
+**2022**
+
+\setlength{\leftskip}{0.5cm}
+```{r results = 'asis'}
+a1 %>% 
+  filter(year == "2022") %>% 
+  mk_pub()
+```
+
+\setlength{\leftskip}{0cm}
+**2023**
+
+\setlength{\leftskip}{0.5cm}
+```{r results = 'asis'}
+a1 %>%
+  filter(year == "2023") %>%
+  mk_pub(exclude = "doi")
+```
+
+\setlength{\leftskip}{0cm}
+
+
+# Presentation
+
+\setlength{\leftskip}{0cm}
+**Poster**
+
+\setlength{\leftskip}{0.5cm}
+
+```{r results = 'asis'}
+readGoogleSheets("Presentation") %>%
+  filter(type == "poster") %>% 
+  mk_presen()
+```
+
+\setlength{\leftskip}{0cm}
+**Presentation**
+
+\setlength{\leftskip}{0.5cm}
+
+```{r results = 'asis'}
+readGoogleSheets("Presentation") %>%
+  filter(type == "presentation") %>% 
+  mk_presen()
+```
+
+\setlength{\leftskip}{0cm}
+
+# Program
+
+```{r results = 'asis'}
+readGoogleSheets("Software") %>%
+  mutate(url = 
+         
+           paste0("\\url{", url, "} ")
+           
+         
+         
+         ) %>% 
+  mk_entry(
+                          # what = title,
+                          when = "year",
+                          where = "note",
+                          with = "author",
+                          why = "url"
+                          )
+```
+
+# Fellowship & Awards
+
+```{r results = 'asis'}
+readGoogleSheets("Fellowship/Awards") %>%
+  mk_entry(
+                          when = "Year",
+                          where = "Type",
+                          with = "Desc"
+                          )
+```
+
+
+
+

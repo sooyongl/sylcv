@@ -17,6 +17,7 @@ output:
   vitae::awesomecv:
     page_total: true
     show_footer: true
+    keep_tex: true
 # vitae::moderncv:
 #   theme: banking
 ---
