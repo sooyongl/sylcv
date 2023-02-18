@@ -29,8 +29,6 @@ library(tidyverse)
 library(googlesheets4)
 library(readxl)
 for(R in fs::dir_ls("source")) {source(R)}
-
-
 ```
 
 
@@ -59,10 +57,10 @@ readGoogleSheets("Education") %>%
 ```{r results = 'asis'}
 readGoogleSheets("Experience") %>% 
   mk_entry(what = "note",
-                          when = "Year",
-                          where = "Position",
-                          with = "Name",
-                          why = "Desc")
+           when = "Year",
+           where = "Position",
+           with = "Name",
+           why = "Desc")
 ```
 
 \newpage
@@ -72,10 +70,10 @@ readGoogleSheets("Experience") %>%
 ```{r results = 'asis'}
 readGoogleSheets("Teaching") %>% 
   mk_entry(what = "note",
-                          when = "Year",
-                          where = "Position",
-                          with = "Name",
-                          why = "Desc")
+           when = "Year",
+           where = "Position",
+           with = "Name",
+           why = "Desc")
 ```
 
 \vspace{-2em}
@@ -122,17 +120,6 @@ a1 %>%
 # Presentation
 
 \setlength{\leftskip}{0cm}
-**Poster**
-
-\setlength{\leftskip}{0.5cm}
-
-```{r results = 'asis'}
-readGoogleSheets("Presentation") %>%
-  filter(type == "poster") %>% 
-  mk_presen()
-```
-
-\setlength{\leftskip}{0cm}
 **Presentation**
 
 \setlength{\leftskip}{0.5cm}
@@ -144,40 +131,51 @@ readGoogleSheets("Presentation") %>%
 ```
 
 \setlength{\leftskip}{0cm}
+**Poster**
+
+\setlength{\leftskip}{0.5cm}
+
+```{r results = 'asis'}
+readGoogleSheets("Presentation") %>%
+  filter(type == "poster") %>% 
+  mk_presen()
+```
+
+\setlength{\leftskip}{0cm}
 
 # Program
 
 ```{r results = 'asis'}
 readGoogleSheets("Software") %>%
   mutate(url = 
-         
-           paste0("\\url{", url, "} ")
            
+           paste0("\\url{", url, "} ")
          
          
-         ) %>% 
+         
+  ) %>% 
   mk_entry(
-                          # what = title,
-                          when = "year",
-                          where = "note",
-                          with = "author",
-                          why = "url",entry_nm = "cvsoftware"
-                            
-                          )
+    # what = title,
+    when = "year",
+    where = "note",
+    with = "author",
+    why = "url",entry_nm = "cvsoftware"
+    
+  )
 ```
 
-\vspace{-2em}
+\vspace{0em}
 
 # Fellowship & Awards
 
 ```{r results = 'asis'}
 readGoogleSheets("FellowshipAwards") %>%
   mk_entry(
-                          when = "Year",
-                          where = "Type",
-                          with = "Desc",
-                          entry_nm = "cvhonor"
-                          )
+    when = "Year",
+    where = "Type",
+    with = "Desc",
+    entry_nm = "cvhonor"
+  )
 
 ```
 
