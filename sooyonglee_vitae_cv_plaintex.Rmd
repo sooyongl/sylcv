@@ -12,13 +12,13 @@ date: "`r format(Sys.time(), '%B %Y')`"
 fontawesome: yes
 papersize: "letterpaper"
 headcolor: 414141
+orcid: 0000-0002-7964-4508
 # csl: apa-cv.csl # change this if you want to use other citation styles
 output:
   pdf_document:
     latex_engine: xelatex
     template: "awesome-me.tex"
     keep_tex: true
-# orcid: 0000-
 ---
 
 ```{r setup, include=FALSE}
@@ -34,7 +34,7 @@ for(R in fs::dir_ls("source")) {source(R)}
 
 # Professional Summary
 
-I am a psychometrician with expertise in applying modern statistical theories and techniques. My research interests are in the development and application of statistical models such as such as structural equation modeling (SEM), multilevel modeling (MLM), and item response theory (IRT). Recently, I have focused on Bayesian estimation to model the relationships among variables.
+As a psychometrician, I specialize in applying contemporary statistical theories and techniques to my work. My research interests center around developing and utilizing statistical models, including structural equation modeling (SEM), multilevel modeling (MLM), item response theory (IRT), and mixture modeling. In my recent work, I have placed particular emphasis on Bayesian estimation as a means of modeling the relationships between variables.
 
 
 
