@@ -150,9 +150,7 @@ readGoogleSheets("Software") %>%
   mutate(url = 
            
            paste0("\\url{", url, "} ")
-         
-         
-         
+
   ) %>% 
   mk_entry(
     # what = title,
