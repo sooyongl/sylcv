@@ -8,7 +8,7 @@ mk_pub <- function(data, exclude = NULL) {
   
   data <- data %>% 
     mutate(
-      note = factor(note, c(NA,note[str_detect(note, "In print")], "In review", "In preparation"))
+      note = factor(note, c(NA,note[str_detect(note, "In print")], "Under review", "In preparation"))
     ) %>% 
     arrange(year, note, journal, author) # %>% select(all_of(selection))
   
