@@ -79,6 +79,19 @@ readGoogleSheets("Teaching") %>%
 \vspace{-2em}
 
 # Publications
+```{r}
+a1 <- readGoogleSheets("Publication") %>%
+  filter(type == "article")
+```
+
+\setlength{\leftskip}{0cm}
+**2016**
+
+```{r results='asis'}
+a1 %>% 
+  filter(year == "2016") %>%
+  mk_pub()
+```
 
 \setlength{\leftskip}{0cm}
 **2021**
@@ -86,9 +99,6 @@ readGoogleSheets("Teaching") %>%
 \setlength{\leftskip}{0.5cm}
 
 ```{r results='asis'}
-a1 <- readGoogleSheets("Publication") %>%
-  filter(type == "article")
-
 a1 %>% 
   filter(year == "2021") %>%
   mk_pub()

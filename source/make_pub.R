@@ -22,8 +22,9 @@ mk_pub <- function(data, exclude = NULL) {
     }
   }
   
+
   data <- 
-    data %>% 
+   data %>% 
     mutate(author = str_replace(author, "Sooyong Lee", "**Sooyong Lee**"),
            journal = paste0("*",journal,"*."),
            volum = paste0(" ",volum,","),
@@ -34,6 +35,7 @@ mk_pub <- function(data, exclude = NULL) {
     mutate_all(~ as.character(.x)) %>% 
     mutate_all(~ case_when(is.na(.x) ~ "", 
                            str_detect(.x, "NA") ~ "", 
+                           # str_detect(.x, "DOI:NA") ~ "", 
                            str_detect(.x, "NULL") ~ "", 
                            TRUE ~ .x)) %>% 
     mutate(
