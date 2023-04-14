@@ -4,7 +4,15 @@ mk_pub <- function(data, exclude = NULL) {
     "\\hangindent=2em
 \\hangafter=1"
   
-  data <- data %>% arrange(year, author) # %>% select(all_of(selection))
+  note <- data %>% arrange(year, journal, note, author) %>% pull(note)
+  
+  data <- data %>% 
+    mutate(
+      note = factor(note, c(NA,note[str_detect(note, "In print")], "In review", "In preparation"))
+    ) %>% 
+    arrange(year, note, journal, author) # %>% select(all_of(selection))
+  
+  
   
   if(!is.null(exclude)) {
     
