@@ -157,6 +157,7 @@ readGoogleSheets("Presentation") %>%
 
 ```{r results = 'asis'}
 readGoogleSheets("Software") %>%
+  arrange(year) %>% 
   mutate(url = 
            
            paste0("\\url{", url, "} ")
