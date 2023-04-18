@@ -4,7 +4,7 @@ surname: Lee
 position: "PhD"
 address: "Educational Psychology, The University of Texas at Austin"
 phone: +1 737 865 0618
-email: "sooyongl09@gmail.com"
+email: "sooyongl09@utexas.com"
 github: sooyongl/
 linestretch: 1
 aboutme: ""
