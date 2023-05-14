@@ -43,6 +43,7 @@ As a psychometrician, I specialize in applying contemporary statistical theories
 ```{r results='asis'}
 
 readGoogleSheets("Education") %>% 
+  slice(1:2) %>% 
   mk_entry(what = "Degree",
            when = "Year",
            with = "Institution",
