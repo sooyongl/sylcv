@@ -20,7 +20,7 @@ output:
     template: "awesome-me.tex"
     keep_tex: true
 ---
-
+  
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(vitae)
@@ -35,7 +35,6 @@ for(R in fs::dir_ls("source")) {source(R)}
 # Professional Summary
 
 As a psychometrician, I specialize in applying contemporary statistical theories and techniques to my work. My research interests center around developing and utilizing statistical models, including structural equation modeling (SEM), multilevel modeling (MLM), item response theory (IRT), and mixture modeling. In my recent work, I have placed particular emphasis on Bayesian estimation as a means of modeling the relationships between variables.
-
 
 
 # Education
@@ -64,34 +63,11 @@ readGoogleSheets("Experience") %>%
            why = "Desc")
 ```
 
-\newpage
-
-# Teaching experience
-
-```{r results = 'asis'}
-readGoogleSheets("Teaching") %>% 
-  mk_entry(what = "note",
-           when = "Year",
-           where = "Position",
-           with = "Name",
-           why = "Desc")
-```
-
-\vspace{-2em}
 
 # Publications
 ```{r}
 a1 <- readGoogleSheets("Publication") %>%
   filter(type == "article")
-```
-
-\setlength{\leftskip}{0cm}
-**2016**
-
-```{r results='asis'}
-a1 %>% 
-  filter(year == "2016") %>%
-  mk_pub()
 ```
 
 \setlength{\leftskip}{0cm}
@@ -115,45 +91,6 @@ a1 %>%
   mk_pub()
 ```
 
-\setlength{\leftskip}{0cm}
-**2023**
-
-\setlength{\leftskip}{0.5cm}
-```{r results = 'asis'}
-a1 %>%
-  filter(year == "2023") %>%
-  mk_pub(exclude = "doi")
-```
-
-\setlength{\leftskip}{0cm}
-
-
-# Presentation
-
-\setlength{\leftskip}{0cm}
-**Presentation**
-
-\setlength{\leftskip}{0.5cm}
-
-```{r results = 'asis'}
-readGoogleSheets("Presentation") %>%
-  filter(type == "presentation") %>% 
-  mk_presen()
-```
-
-\setlength{\leftskip}{0cm}
-**Poster**
-
-\setlength{\leftskip}{0.5cm}
-
-```{r results = 'asis'}
-readGoogleSheets("Presentation") %>%
-  filter(type == "poster") %>% 
-  mk_presen()
-```
-
-\setlength{\leftskip}{0cm}
-
 # Program
 
 ```{r results = 'asis'}
@@ -162,7 +99,7 @@ readGoogleSheets("Software") %>%
   mutate(url = 
            
            paste0("\\url{", url, "} ")
-
+         
   ) %>% 
   mk_entry(
     # what = title,
@@ -175,20 +112,6 @@ readGoogleSheets("Software") %>%
 ```
 
 \vspace{0em}
-
-# Fellowship & Awards
-
-```{r results = 'asis'}
-readGoogleSheets("FellowshipAwards") %>%
-  mk_entry(
-    when = "Year",
-    where = "Type",
-    with = "Desc",
-    entry_nm = "cvhonor"
-  )
-
-```
-
 
 
 
