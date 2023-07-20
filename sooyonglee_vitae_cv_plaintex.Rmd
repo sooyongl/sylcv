@@ -154,6 +154,20 @@ readGoogleSheets("Presentation") %>%
 
 \setlength{\leftskip}{0cm}
 
+# Service
+
+```{r results = 'asis'}
+readGoogleSheets("Service") %>%
+  mk_entry(
+    what = "note",
+    when = "Year",
+    where = "Position",
+    with = "Name",
+    why = "Desc"
+  )
+
+```
+
 # Program
 
 ```{r results = 'asis'}
