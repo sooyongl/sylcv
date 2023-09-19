@@ -57,6 +57,7 @@ readGoogleSheets("Education") %>%
 
 ```{r results = 'asis'}
 readGoogleSheets("Experience") %>% 
+  dplyr::arrange(desc(Year)) %>% 
   mk_entry(what = "note",
            when = "Year",
            where = "Position",
@@ -70,6 +71,7 @@ readGoogleSheets("Experience") %>%
 
 ```{r results = 'asis'}
 readGoogleSheets("Teaching") %>% 
+    dplyr::arrange(desc(Year)) %>% 
   mk_entry(what = "note",
            when = "Year",
            where = "Position",
@@ -85,12 +87,25 @@ a1 <- readGoogleSheets("Publication") %>%
   filter(type == "article")
 ```
 
-\setlength{\leftskip}{0cm}
-**2016**
 
-```{r results='asis'}
+\setlength{\leftskip}{0cm}
+**2023**
+
+\setlength{\leftskip}{0.5cm}
+```{r results = 'asis'}
+a1 %>%
+  filter(year == "2023") %>%
+  mk_pub(exclude = "doi")
+```
+
+
+\setlength{\leftskip}{0cm}
+**2022**
+
+\setlength{\leftskip}{0.5cm}
+```{r results = 'asis'}
 a1 %>% 
-  filter(year == "2016") %>%
+  filter(year == "2022") %>% 
   mk_pub()
 ```
 
@@ -105,25 +120,16 @@ a1 %>%
   mk_pub()
 ```
 
-\setlength{\leftskip}{0cm}
-**2022**
 
-\setlength{\leftskip}{0.5cm}
-```{r results = 'asis'}
+\setlength{\leftskip}{0cm}
+**2016**
+
+```{r results='asis'}
 a1 %>% 
-  filter(year == "2022") %>% 
+  filter(year == "2016") %>%
   mk_pub()
 ```
 
-\setlength{\leftskip}{0cm}
-**2023**
-
-\setlength{\leftskip}{0.5cm}
-```{r results = 'asis'}
-a1 %>%
-  filter(year == "2023") %>%
-  mk_pub(exclude = "doi")
-```
 
 \setlength{\leftskip}{0cm}
 
@@ -138,6 +144,8 @@ a1 %>%
 ```{r results = 'asis'}
 readGoogleSheets("Presentation") %>%
   filter(type == "presentation") %>% 
+  
+   dplyr::arrange(desc(year)) %>% 
   mk_presen()
 ```
 
@@ -149,6 +157,7 @@ readGoogleSheets("Presentation") %>%
 ```{r results = 'asis'}
 readGoogleSheets("Presentation") %>%
   filter(type == "poster") %>% 
+   dplyr::arrange(desc(year)) %>% 
   mk_presen()
 ```
 
@@ -158,6 +167,7 @@ readGoogleSheets("Presentation") %>%
 
 ```{r results = 'asis'}
 readGoogleSheets("Service") %>%
+   dplyr::arrange(desc(Year)) %>% 
   mk_entry(
     what = "note",
     when = "Year",
@@ -172,7 +182,7 @@ readGoogleSheets("Service") %>%
 
 ```{r results = 'asis'}
 readGoogleSheets("Software") %>%
-  arrange(year) %>% 
+   dplyr::arrange(desc(year)) %>% 
   mutate(url = 
            
            paste0("\\url{", url, "} ")
@@ -194,6 +204,7 @@ readGoogleSheets("Software") %>%
 
 ```{r results = 'asis'}
 readGoogleSheets("FellowshipAwards") %>%
+   dplyr::arrange(desc(Year)) %>% 
   mk_entry(
     when = "Year",
     where = "Type",
