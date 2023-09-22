@@ -1,5 +1,7 @@
 mk_entry <- function(data, what=NA, when=NA, with=NA, where=NA, why=NA, more_why = NA, showcat = T, entry_nm = "cventry") {
-  # data = a1
+  
+  # data <- readGoogleSheets("Education") %>% slice(1:2)
+  
   cols <- c("what"=what, "when"=when, "with"=with, "where"=where, "why"=why, "more_why" = more_why)
   
   check_name<-function(data, cols) {

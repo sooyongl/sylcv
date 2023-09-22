@@ -4,7 +4,7 @@ surname: Lee
 position: "PhD"
 address: "Educational Psychology, The University of Texas at Austin"
 phone: +1 737 865 0618
-email: "sooyongl09@utexas.com"
+email: "sooyongl09@gmail.com"
 github: sooyongl/
 linestretch: 1
 aboutme: ""
@@ -47,6 +47,7 @@ readGoogleSheets("Education") %>%
   mk_entry(what = "Degree",
            when = "Year",
            with = "Institution",
+           why = "Details",
            where = "Location",entry_nm = "cveducation")
 
 ```
@@ -65,7 +66,8 @@ readGoogleSheets("Experience") %>%
            why = "Desc")
 ```
 
-\newpage
+<!-- \newpage -->
+\vspace{0em}
 
 # Teaching experience
 
@@ -79,7 +81,7 @@ readGoogleSheets("Teaching") %>%
            why = "Desc")
 ```
 
-\vspace{-2em}
+\vspace{-1em}
 
 # Publications
 ```{r}
@@ -123,6 +125,8 @@ a1 %>%
 
 \setlength{\leftskip}{0cm}
 **2016**
+
+\setlength{\leftskip}{0.5cm}
 
 ```{r results='asis'}
 a1 %>% 
