@@ -1,0 +1,238 @@
+---
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    includes:
+      in_header: preamble.tex
+fontsize: 10pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis',
+  echo = FALSE, warning = FALSE, message = FALSE)
+# library(vitae)
+library(glue)
+library(tidyverse)
+
+library(tidyverse)
+
+library(readxl)
+
+# for(R in fs::dir_ls("source/new_make.R")) {source(R)}
+
+source("source/new_make.R")
+source("source/read_GoogleSheets.R")
+
+# Latex code generators functions
+maketitle <- function(name, position, institute) {
+  
+  name <- str_replace_all(name, fixed("&"), "\\&")
+  position <- str_replace_all(position, fixed("&"), "\\&")
+  institute <- str_replace_all(institute, fixed("&"), "\\&")
+  
+  glue("\\centering \\textbf{\\Large <<name>>}
+
+\\centering <<position>>
+
+\\centering <<institute>>", .open = "<<", .close = ">>")
+  
+}
+
+header1 <- function(title) {
+  title <- str_replace_all(title, fixed("&"), "\\&")
+  
+  glue("
+\\noindent\\colorbox{lightergrey}{%
+    \\parbox{\\dimexpr\\textwidth-2\\fboxsep\\relax}{%
+        \\centering
+        \\fontspec{Arial} \\textbf{\\Large <<title>>}%
+    }%
+}\\par\\bigskip", .open = "<<", .close = ">>")
+}
+
+header2 <- function(title) {
+  title <- str_replace_all(title, fixed("&"), "\\&")
+  
+  glue("
+\\begin{flushleft}
+  \\fontspec{Arial}
+  \\textbf{\\large <<title>>} 
+\\end{flushleft} \\par\\medskip", 
+       .open = "<<", .close = ">>")
+}
+
+edu_entry <- function(year, position, school, location) {
+  
+  year <- str_replace_all(year, fixed("&"), "\\&")
+  position <- str_replace_all(position, fixed("&"), "\\&")
+  school <- str_replace_all(school, fixed("&"), "\\&")
+  location <- str_replace_all(location, fixed("&"), "\\&")
+  
+  glue("
+\\begin{tabular}{p{0.2\\textwidth} p{0.6\\textwidth} p{0.2\\textwidth} }
+  \\textbf{<<year>>} & <<position>>, <<school>> & <<location>> 
+\\end{tabular}", 
+.open = "<<", .close = ">>")
+}
+
+
+pub_entry <- function(number, year, name, title, journal, page) {
+  
+  year <- str_replace_all(year, fixed("&"), "\\&")
+  name <- str_replace_all(name, fixed("&"), "\\&")
+  title <- str_replace_all(title, fixed("&"), "\\&")
+  journal <- str_replace_all(journal, fixed("&"), "\\&")
+  page <- str_replace_all(page, fixed("&"), "\\&")
+  
+  name <- str_replace_all(name, fixed("Sooyong Lee"), "\\textbf{Sooyong Lee}")
+  
+  glue("
+\\begin{tabular}{p{0.05\\textwidth} p{0.95\\textwidth} }
+
+  <<number>> & <<name>>. (<<year>>). <<title>>. \\emph{<<journal>>}, <<page>>
+
+\\end{tabular}", 
+.open = "<<", .close = ">>")
+  
+  # 1. **2023** Sooyong Lee, Kahyun Lee & Tiffany A. Whittaker. *Application of Associative Discrete-Time Survival Analysis Using Latent Transition Specification*. Structural Equation Modeling: A Multidisciplinary Journal, 1-12.
+}
+
+two_entry <- function(a1, a2, width = c(0.2, 0.8)) {
+  
+  a1 <- str_replace_all(a1, fixed("&"), "\\&")
+  a2 <- str_replace_all(a2, fixed("&"), "\\&")
+  # a3 <- str_replace_all(a3, fixed("&"), "\\&")
+  # a4 <- str_replace_all(a4, fixed("&"), "\\&")
+  
+  glue("
+\\begin{tabular}{p{<<width[1]>>\\textwidth} p{<<width[2]>>\\textwidth} }
+
+  \\textbf{<<a1>>} & <<a2>>
+
+\\end{tabular}", 
+.open = "<<", .close = ">>")
+}
+
+three_entry <- function(a1, a2, a3) {
+  
+  a1 <- str_replace_all(a1, fixed("&"), "\\&")
+  a2 <- str_replace_all(a2, fixed("&"), "\\&")
+  # a3 <- str_replace_all(a3, fixed("&"), "\\&")
+  # a4 <- str_replace_all(a4, fixed("&"), "\\&")
+  
+  glue("
+\\begin{tabular}{p{0.2\\textwidth} p{0.6\\textwidth} p{0.2\\textwidth} }
+
+  \\textbf{<<a1>>} & <<a2>> & <<a3>>
+
+\\end{tabular}", 
+.open = "<<", .close = ">>")
+}
+
+```
+
+<!-- My info -->
+```{r}
+maketitle("Sooyong Lee, Ph.D.", "Post-Doc Fellow", "The University of Texas at Austin")
+```
+
+
+<!-- My Education-->
+```{r}
+header1("Education")
+header2("Graduate and Postdoctoral Education")
+```
+
+```{r}
+# edu_entry("2011-2016", "Post-doctoral Fellow in Learning Sciences","University of Washington","Seattle, WA")
+
+readGoogleSheets("Education") %>% 
+  slice(1:2) %>% 
+  mutate(
+  tex = edu_entry(Year, Degree, Institution, Location)
+) %>% pull(tex)
+
+
+```
+
+\par\bigskip
+
+<!-- My Research-->
+```{r}
+header1("Research and Scholarship")
+header2("Peer-Reviewed Publications")
+```
+
+```{r eval = T, echo = F, results = 'hide'}
+a1 <- readGoogleSheets("Publication") %>%
+  filter(type == "article")
+# 
+temp <- a1 %>%
+  # filter(year == "2023") %>%
+  mk_pub_new(exclude = "doi") %>%
+  mutate(
+    number = row_number(),
+    out = two_entry('-', out, c(0.01, 0.99))
+  )
+  
+```
+
+
+\begin{flushleft} \textbf{2023} \end{flushleft}
+<!-- \setlength{\leftskip}{0.5cm} -->
+
+```{r}
+temp %>% 
+  filter(year == "2023") %>%
+  pull(out)
+
+```
+
+
+\begin{flushleft} \textbf{2022} \end{flushleft}
+
+```{r}
+temp %>% 
+  filter(year == "2022") %>%
+  pull(out)
+
+```
+
+
+\begin{flushleft} \textbf{2021} \end{flushleft}
+
+```{r}
+temp %>% 
+  filter(year == "2021") %>%
+  pull(out)
+
+```
+
+
+\setlength{\leftskip}{0cm}
+\par\bigskip
+
+<!-- My Past Relevant Positions-->
+
+```{r}
+header1("Academic Appointment & Past Relevant Positions")
+```
+
+```{r}
+two_entry(a1 = "2011-present", 
+          a2 = "Assistant Professor, Psychological Health & Learning Sciences, College of Education, University of Houston")
+
+three_entry(a1 = "2011-present", 
+          a2 = "Assistant Professor, Psychological Health & Learning Sciences, College of Education",
+          a3 = "University of Houston")
+```
+
+
+
+
+
+
+
+
+
