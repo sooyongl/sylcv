@@ -1,0 +1,27 @@
+\usepackage{geometry} % To set the page dimensions
+\geometry{letterpaper, margin=1in} % Set the document to US Letter size with a 1-inch margin
+
+\usepackage{fontspec} % Allows the use of OpenType fonts
+\setmainfont{Times New Roman} % Sets the main font to Times New Roman
+
+\usepackage{xcolor}
+\usepackage{soul}
+\sethlcolor{lightgray} % Set the highlight color to light grey
+
+\definecolor{lightergrey}{gray}{0.9} 
+
+% center of header
+%\fancyhead[CO,CE]{Your Document Header}
+% center of footer
+%\fancyfoot[CO,CE]{And this is a fancy footer}
+% page number on the left of even pages and right of odd pages
+%\fancypagestyle{plain}{\pagestyle{fancy}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % Clear header and footer fields
+\fancyfoot[L]{Last Updated: \today} % Left-aligned footer
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt} % Remove the header rule
+\renewcommand{\footrulewidth}{0pt} % Remove the footer rule, if you had one
+\fancypagestyle{plain}{\pagestyle{fancy}}
