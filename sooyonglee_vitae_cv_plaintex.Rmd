@@ -148,8 +148,10 @@ a1 %>%
 ```{r results = 'asis'}
 readGoogleSheets("Presentation") %>%
   filter(type == "presentation") %>% 
-  
-   dplyr::arrange(desc(year)) %>% 
+  dplyr::arrange(desc(year)) %>% 
+    mutate(year = as.character(year),
+         year = str_extract(year, "^\\d{4}-\\d{2}")) %>% 
+   
   mk_presen()
 ```
 
@@ -161,7 +163,9 @@ readGoogleSheets("Presentation") %>%
 ```{r results = 'asis'}
 readGoogleSheets("Presentation") %>%
   filter(type == "poster") %>% 
-   dplyr::arrange(desc(year)) %>% 
+  dplyr::arrange(desc(year)) %>%
+  mutate(year = as.character(year),
+         year = str_extract(year, "^\\d{4}-\\d{2}")) %>% 
   mk_presen()
 ```
 
