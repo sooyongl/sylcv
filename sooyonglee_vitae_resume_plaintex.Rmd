@@ -56,6 +56,7 @@ readGoogleSheets("Education") %>%
 
 ```{r results = 'asis'}
 readGoogleSheets("Experience") %>% 
+  arrange(desc(Year)) %>% 
   mk_entry(what = "note",
            when = "Year",
            where = "Position",
@@ -64,31 +65,32 @@ readGoogleSheets("Experience") %>%
 ```
 
 
-# Publications
+# Selective Publications
 ```{r}
 a1 <- readGoogleSheets("Publication") %>%
   filter(type == "article")
 ```
 
-\setlength{\leftskip}{0cm}
-**2021**
-
-\setlength{\leftskip}{0.5cm}
-
-```{r results='asis'}
-a1 %>% 
-  filter(year == "2021") %>%
-  mk_pub()
-```
-
-\setlength{\leftskip}{0cm}
-**2022**
 
 \setlength{\leftskip}{0.5cm}
 ```{r results = 'asis'}
-a1 %>% 
-  filter(year == "2022") %>% 
-  mk_pub()
+a1 %>%
+  arrange(desc(year)) %>% 
+  filter(str_detect(author, "Choi")) %>% 
+  mk_pub(exclude = "doi")
+```
+
+
+# Selective Presentation and Poster
+```{r results = 'asis'}
+readGoogleSheets("Presentation") %>%
+  # filter(type == "presentation") %>%
+   filter(str_detect(author, "(Suhwa|Choi|Daniel)")) %>%
+  dplyr::arrange(desc(year)) %>% 
+    mutate(year = as.character(year),
+         year = str_extract(year, "^\\d{4}-\\d{2}")) %>% 
+   
+  mk_presen()
 ```
 
 # Program
@@ -100,7 +102,8 @@ readGoogleSheets("Software") %>%
            
            paste0("\\url{", url, "} ")
          
-  ) %>% 
+  ) %>%
+  filter(!str_detect(author, "clavaan")) %>% 
   mk_entry(
     # what = title,
     when = "year",

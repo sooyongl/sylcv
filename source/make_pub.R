@@ -4,7 +4,7 @@ mk_pub <- function(data, exclude = NULL) {
     "\\hangindent=2em
 \\hangafter=1"
   
-  note <- data %>% arrange(year, journal, note, author) %>% pull(note)
+  note <- data %>% arrange(desc(year), journal, note, author) %>% pull(note)
   
   data <- data %>% 
     mutate(
@@ -56,7 +56,7 @@ mk_presen <- function(data, exclude = NULL) {
     "\\hangindent=2em
 \\hangafter=1"
   
-  data <- data %>% arrange(year, author) # %>% select(all_of(selection))
+  data <- data %>% arrange(desc(year), author) # %>% select(all_of(selection))
   
   if(!is.null(exclude)) {
     
