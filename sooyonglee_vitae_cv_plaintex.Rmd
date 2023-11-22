@@ -171,21 +171,6 @@ readGoogleSheets("Presentation") %>%
 
 \setlength{\leftskip}{0cm}
 
-# Service
-
-```{r results = 'asis'}
-readGoogleSheets("Service") %>%
-   dplyr::arrange(desc(Year)) %>% 
-  mk_entry(
-    what = "note",
-    when = "Year",
-    where = "Position",
-    with = "Name",
-    why = "Desc"
-  )
-
-```
-
 # Program
 
 ```{r results = 'asis'}
@@ -207,6 +192,22 @@ readGoogleSheets("Software") %>%
 ```
 
 \vspace{0em}
+
+
+# Service
+
+```{r results = 'asis'}
+readGoogleSheets("Service") %>%
+   dplyr::arrange(desc(Year)) %>% 
+  mk_entry(
+    what = "note",
+    when = "Year",
+    where = "Position",
+    with = "Name",
+    why = "Desc"
+  )
+
+```
 
 # Fellowship & Awards
 
