@@ -52,35 +52,6 @@ readGoogleSheets("Education") %>%
 
 ```
 
-\vspace{0em}
-
-# Research experience
-
-```{r results = 'asis'}
-readGoogleSheets("Experience") %>% 
-  dplyr::arrange(desc(Year)) %>% 
-  mk_entry(what = "note",
-           when = "Year",
-           where = "Position",
-           with = "Name",
-           why = "Desc")
-```
-
-<!-- \newpage -->
-\vspace{0em}
-
-# Teaching experience
-
-```{r results = 'asis'}
-readGoogleSheets("Teaching") %>% 
-    dplyr::arrange(desc(Year)) %>% 
-  mk_entry(what = "note",
-           when = "Year",
-           where = "Position",
-           with = "Name",
-           why = "Desc")
-```
-
 \vspace{-1em}
 
 # Publications
@@ -170,6 +141,35 @@ readGoogleSheets("Presentation") %>%
 ```
 
 \setlength{\leftskip}{0cm}
+
+\vspace{0em}
+
+# Research experience
+
+```{r results = 'asis'}
+readGoogleSheets("Experience") %>% 
+  dplyr::arrange(desc(Year)) %>% 
+  mk_entry(what = "note",
+           when = "Year",
+           where = "Position",
+           with = "Name",
+           why = "Desc")
+```
+
+<!-- \newpage -->
+\vspace{0em}
+
+# Teaching experience
+
+```{r results = 'asis'}
+readGoogleSheets("Teaching") %>% 
+    dplyr::arrange(desc(Year)) %>% 
+  mk_entry(what = "note",
+           when = "Year",
+           where = "Position",
+           with = "Name",
+           why = "Desc")
+```
 
 # Program
 

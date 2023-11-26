@@ -59,7 +59,7 @@ header2 <- function(title) {
   \\fontspec{Arial}
   \\textbf{\\large <<title>>} 
 \\end{flushleft} \\par\\medskip", 
-       .open = "<<", .close = ">>")
+.open = "<<", .close = ">>")
 }
 
 edu_entry <- function(year, position, school, location) {
@@ -97,6 +97,15 @@ pub_entry <- function(number, year, name, title, journal, page) {
   
   # 1. **2023** Sooyong Lee, Kahyun Lee & Tiffany A. Whittaker. *Application of Associative Discrete-Time Survival Analysis Using Latent Transition Specification*. Structural Equation Modeling: A Multidisciplinary Journal, 1-12.
 }
+
+one_entry <- function(a1) {
+  
+  a1 <- str_replace_all(a1, fixed("&"), "\\&")
+  
+  glue("\\textbf{<<a1>>}", 
+       .open = "<<", .close = ">>")
+}
+
 
 two_entry <- function(a1, a2, width = c(0.2, 0.8)) {
   
@@ -140,7 +149,7 @@ maketitle("Sooyong Lee, Ph.D.", "Post-Doc Fellow", "The University of Texas at A
 
 <!-- My Education-->
 ```{r}
-header1("Education")
+header1("EDUCATION")
 header2("Graduate and Postdoctoral Education")
 ```
 
@@ -150,18 +159,23 @@ header2("Graduate and Postdoctoral Education")
 readGoogleSheets("Education") %>% 
   slice(1:2) %>% 
   mutate(
-  tex = edu_entry(Year, Degree, Institution, Location)
-) %>% pull(tex)
+    tex = edu_entry(Year, Degree, Institution, Location)
+  ) %>% pull(tex)
 
 
 ```
 
 \par\bigskip
 
+`r header1("RESEARCH INTERESTS")`
+
+
+
+\par\bigskip
+
 <!-- My Research-->
 ```{r}
-header1("Research and Scholarship")
-header2("Peer-Reviewed Publications")
+header1("PUBLICATIONS")
 ```
 
 ```{r eval = T, echo = F, results = 'hide'}
@@ -175,7 +189,7 @@ temp <- a1 %>%
     number = row_number(),
     out = two_entry('-', out, c(0.01, 0.99))
   )
-  
+
 ```
 
 
@@ -213,19 +227,91 @@ temp %>%
 \setlength{\leftskip}{0cm}
 \par\bigskip
 
+`r header1("NATIONAL AND INTERNATIONAL PRESENTATIONS")`
+
+```{r results = 'asis'}
+readGoogleSheets("Presentation") %>%
+  filter(type == "presentation") %>% 
+  dplyr::arrange(desc(year)) %>% 
+  mutate(
+    year = as.character(year),
+    year = str_extract(year, "^\\d{4}-\\d{2}"),
+    number = row_number(),
+    out = one_entry(glue("{author} ({year}). {title}. {conference}, {location}."))
+  ) %>% 
+  pull(out)
+```
+
+```{r results = 'asis'}
+readGoogleSheets("Presentation") %>%
+  filter(type == "poster") %>% 
+  dplyr::arrange(desc(year)) %>%
+  mutate(
+    year = as.character(year),
+    
+    year = str_extract(year, "^\\d{4}-\\d{2}"),
+    number = row_number(),
+    out = one_entry(glue("{author} ({year}). {title}. {conference}, {location}."))
+  ) %>% 
+  pull(out)
+```
+
+`r header1("RESEARCH")`
+
+```{r results = 'asis'}
+# readGoogleSheets("Experience") %>% 
+#   dplyr::arrange(desc(Year)) %>% 
+#   mutate(
+#     out = glue("")
+#   )
+#   mk_entry(what = "note",
+#            when = "Year",
+#            where = "Position",
+#            with = "Name",
+#            why = "Desc")
+```
+
+
+`r header1("TEACHING")`
+
+```{r results = 'asis'}
+# readGoogleSheets("Teaching") %>% 
+#     dplyr::arrange(desc(Year)) %>% 
+#   mk_entry(what = "note",
+#            when = "Year",
+#            where = "Position",
+#            with = "Name",
+#            why = "Desc")
+```
+
+`r header1("PROGRAMS")`
+
+```{r results = 'asis'}
+readGoogleSheets("Software") %>%
+  dplyr::arrange(desc(year)) %>% 
+  mutate(url = paste0("\\url{", url, "} "),
+         
+         author = paste0(author, "\n", url),
+         out = three_entry(note, author, title)
+         
+  ) %>%
+  pull(out)
+
+```
+
 <!-- My Past Relevant Positions-->
 
 ```{r}
-header1("Academic Appointment & Past Relevant Positions")
+# header1("Academic Appointment & Past Relevant Positions")
 ```
 
 ```{r}
-two_entry(a1 = "2011-present", 
-          a2 = "Assistant Professor, Psychological Health & Learning Sciences, College of Education, University of Houston")
-
-three_entry(a1 = "2011-present", 
-          a2 = "Assistant Professor, Psychological Health & Learning Sciences, College of Education",
-          a3 = "University of Houston")
+# two_entry(a1 = "2011-present", 
+#           a2 = "Assistant Professor, Psychological Health & Learning Sciences, College of Education, University of Houston")
+# 
+# three_entry(a1 = "2011-present", 
+#           a2 = "Assistant Professor, Psychological Health & Learning Sciences, College of Education",
+#           a3 = "University of Houston")
 ```
 
 
