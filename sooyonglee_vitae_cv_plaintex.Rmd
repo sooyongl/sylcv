@@ -19,6 +19,8 @@ output:
     latex_engine: xelatex
     template: "awesome-me.tex"
     keep_tex: true
+    includes:
+      in_header: preamblePlain.tex
 ---
 
 ```{r setup, include=FALSE}
