@@ -70,7 +70,7 @@ edu_entry <- function(year, position, school, location) {
   location <- str_replace_all(location, fixed("&"), "\\&")
   
   glue("
-\\begin{tabular}{p{0.2\\textwidth} p{0.6\\textwidth} p{0.2\\textwidth} }
+\\begin{tabular}{p{0.15\\textwidth}@{\\hspace{-10pt}}@{}p{0.7\\textwidth} p{0.15\\textwidth} }
   \\textbf{<<year>>} & <<position>>, <<school>> & <<location>> 
 \\end{tabular}", 
 .open = "<<", .close = ">>")
@@ -101,8 +101,11 @@ pub_entry <- function(number, year, name, title, journal, page) {
 one_entry <- function(a1) {
   
   a1 <- str_replace_all(a1, fixed("&"), "\\&")
+  a1 <- str_replace(a1, fixed("Sooyong Lee"), '\\textbf{Sooyong Lee}')
   
-  glue("\\textbf{<<a1>>}", 
+  glue("<<a1>>
+       
+       ", 
        .open = "<<", .close = ">>")
 }
 
@@ -133,9 +136,50 @@ three_entry <- function(a1, a2, a3) {
   glue("
 \\begin{tabular}{p{0.2\\textwidth} p{0.6\\textwidth} p{0.2\\textwidth} }
 
-  \\textbf{<<a1>>} & <<a2>> & <<a3>>
+  \\textbf{<<a1>>} & <<a2>> & <<a3>> \\
 
 \\end{tabular}", 
+.open = "<<", .close = ">>")
+}
+
+research_entry <- function(a1, a2, a3, a4) {
+  
+  # a1 <- str_replace_all(a1, fixed("&"), "\\&")
+  # a2 <- str_replace_all(a2, fixed("&"), "\\&")
+  # a3 <- str_replace_all(a3, fixed("&"), "\\&")
+  # a4 <- str_replace_all(a4, fixed("&"), "\\&")
+  
+  glue("
+\\begin{tabular}{p{0.2\\textwidth} p{0.6\\textwidth} p{0.2\\textwidth} }
+
+  <<a1>> & <<a2>> & <<a3>> \\\\\\
+         &  - <<a4>> &   \\\\\\
+
+\\end{tabular}
+
+", 
+.open = "<<", .close = ">>")
+}
+
+software_entry <- function(type, year, name, title, what, link) {
+  
+  # a1 <- str_replace_all(a1, fixed("&"), "\\&")
+  # a2 <- str_replace_all(a2, fixed("&"), "\\&")
+  # a3 <- str_replace_all(a3, fixed("&"), "\\&")
+  # a4 <- str_replace_all(a4, fixed("&"), "\\&")
+  name <- str_replace(name, fixed("Sooyong Lee"), '\\textbf{Sooyong Lee}')
+  
+  glue("
+\\begin{tabular}{p{0.2\\textwidth}@{\\hspace{-10pt}}@{}p{0.7\\textwidth} p{0.1\\textwidth} }
+
+  <<type>> & <<title>> & <<year>> \\\\\\
+         &  <<name>> &   \\\\\\
+         &  <<what>> &   \\\\\\
+         &  <<link>> &   \\\\\\
+
+\\end{tabular}
+
+", 
 .open = "<<", .close = ">>")
 }
 
@@ -145,6 +189,10 @@ three_entry <- function(a1, a2, a3) {
 ```{r}
 maketitle("Sooyong Lee, Ph.D.", "Post-Doc Fellow", "The University of Texas at Austin")
 ```
+
+`r header1("PROFESSIONAL SUMMARY")`
+
+As a psychometrician, I specialize in applying contemporary statistical theories and techniques to my work. My research interests center around developing and utilizing statistical models, including structural equation modeling (SEM), multilevel modeling (MLM), item response theory (IRT), and mixture modeling. In my recent work, I have placed particular emphasis on Bayesian estimation as a means of modeling the relationships between variables.
 
 
 <!-- My Education-->
@@ -165,9 +213,7 @@ readGoogleSheets("Education") %>%
 
 ```
 
-\par\bigskip
-
-`r header1("RESEARCH INTERESTS")`
+<!-- `r header1("RESEARCH INTERESTS")` -->
 
 
 
@@ -229,54 +275,64 @@ temp %>%
 
 `r header1("NATIONAL AND INTERNATIONAL PRESENTATIONS")`
 
+\begin{flushleft} \textbf{Presentations} \end{flushleft}
+
 ```{r results = 'asis'}
 readGoogleSheets("Presentation") %>%
   filter(type == "presentation") %>% 
   dplyr::arrange(desc(year)) %>% 
+  mutate(number = row_number()) %>% 
   mutate(
     year = as.character(year),
     year = str_extract(year, "^\\d{4}-\\d{2}"),
     number = row_number(),
-    out = one_entry(glue("{author} ({year}). {title}. {conference}, {location}."))
+    out = one_entry(glue("{number}. {author} ({year}). {title}. {conference}, {location}."))
   ) %>% 
   pull(out)
 ```
+
+\begin{flushleft} \textbf{Posters} \end{flushleft}
 
 ```{r results = 'asis'}
 readGoogleSheets("Presentation") %>%
   filter(type == "poster") %>% 
   dplyr::arrange(desc(year)) %>%
+  mutate(number = row_number()) %>% 
   mutate(
     year = as.character(year),
     
     year = str_extract(year, "^\\d{4}-\\d{2}"),
     number = row_number(),
-    out = one_entry(glue("{author} ({year}). {title}. {conference}, {location}."))
+    out = one_entry(glue("{number}. {author} ({year}). {title}. {conference}, {location}."))
   ) %>% 
   pull(out)
 ```
 
 `r header1("RESEARCH")`
 
+<!-- Post-doc Fellow -->
+
+<!-- Research Assistant -->
+
+<!-- Intern -->
+
 ```{r results = 'asis'}
-# readGoogleSheets("Experience") %>% 
-#   dplyr::arrange(desc(Year)) %>% 
-#   mutate(
-#     out = glue("")
-#   )
-#   mk_entry(what = "note",
-#            when = "Year",
-#            where = "Position",
-#            with = "Name",
-#            why = "Desc")
+readGoogleSheets("Experience") %>%
+  dplyr::arrange(desc(Year)) %>%
+  mutate(
+    out = research_entry(Position, Name, Year, Desc)
+  ) %>% pull(out)
+
 ```
+
+
 
 
 `r header1("TEACHING")`
 
 ```{r results = 'asis'}
-# readGoogleSheets("Teaching") %>% 
-#     dplyr::arrange(desc(Year)) %>% 
+# readGoogleSheets("Teaching") %>%
+#     dplyr::arrange(desc(Year)) %>%
 #   mk_entry(what = "note",
 #            when = "Year",
 #            where = "Position",
@@ -290,10 +346,8 @@ readGoogleSheets("Presentation") %>%
 readGoogleSheets("Software") %>%
   dplyr::arrange(desc(year)) %>% 
   mutate(url = paste0("\\url{", url, "} "),
-         
-         author = paste0(author, "\n", url),
-         out = three_entry(note, author, title)
-         
+         # author = paste0(author, "\n", url),
+         out = software_entry(note, year, url, author, "", "")          
   ) %>%
   pull(out)
 
