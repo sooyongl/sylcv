@@ -5,14 +5,32 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = F)
 library(knitr)
+
+# library(pdftools)
+# pdf_convert("CV/sooyonglee_vitae_cv_newversion.pdf", 
+#             format = "png", 
+#             pages = NULL, 
+#             filenames = NULL, dpi = 300, opw = "", upw = "", verbose = TRUE)
+#
+# fs::file_move(fs::dir_ls(".", regexp = "\\.png$"),
+#               paste0("CVpng/",fs::dir_ls(".", regexp = "\\.png$")))
+
+a1 <- fs::dir_ls("CVpng", regexp = "\\.png$")
 ```
 
 
 
-```{r width='1000px', height='2000px'} 
-# include_graphics("CV/sooyonglee_vitae_cv_newversion.pdf")
+```{r } 
+
+# for(i in a1) {
+#   include_graphics(i)
+# }
+include_graphics(a1[1])
+include_graphics(a1[2])
+include_graphics(a1[3])
+include_graphics(a1[4])
 ```
 
 <!-- [embed]sooyonglee_vitae_cv_newversion.pdf[/embed] -->
-
-![](CV/sooyonglee_vitae_cv_newversion.pdf){width=2000px, height=1500px}
+<!-- ![](CV/sooyonglee_vitae_cv_newversion.pdf){width=2000px, height=1500px} -->
+<!-- (https://github.com/sooyongl/sylcv/blob/main/CV/sooyonglee_vitae_cv_newversion.pdf?raw=true) -->
