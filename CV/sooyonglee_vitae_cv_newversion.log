@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.11.29)  29 NOV 2023 20:35
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.11.29)  30 NOV 2023 01:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -934,12 +934,20 @@ LaTeX Font Info:    Font shape `TU/Arial(0)/b/n' will be
 Package fontspec Info: Arial scale = 0.8625210024688017.
 
 
-Overfull \hbox (7.99998pt too wide) in paragraph at lines 157--160
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 157--184
  [][] 
  []
 
 
-Overfull \hbox (7.99998pt too wide) in paragraph at lines 161--164
+Package fontspec Info: Arial scale = 0.8625210024688017.
+
+
+Overfull \hbox (7.99998pt too wide) in paragraph at lines 194--197
+ [][] 
+ []
+
+
+Overfull \hbox (7.99998pt too wide) in paragraph at lines 198--201
  [][] 
  []
 
@@ -947,69 +955,69 @@ Overfull \hbox (7.99998pt too wide) in paragraph at lines 161--164
 Package fontspec Info: Arial scale = 0.8625210024688017.
 
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 180.
+(Font)              scaled to size 10.0pt on input line 217.
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [][] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 178--243
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 215--280
  [] 
  []
 
@@ -1018,22 +1026,22 @@ File: ../img/utaustin_trans.png Graphic file (type bmp)
 [1
 
 ]
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 246--261
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 283--298
  [][] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 246--261
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 283--298
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 246--261
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 283--298
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 264--269
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 301--306
  [][] 
  []
 
@@ -1047,96 +1055,44 @@ File: ../img/utaustin_trans.png Graphic file (type bmp)
 Package fontspec Info: Arial scale = 0.8625210024688017.
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 362--366
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 401--405
 [][] 
  []
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 367--371
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 406--410
 [][] 
  []
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 372--376
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 411--415
 [][] 
  []
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 377--381
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 416--420
 [][] 
  []
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 382--386
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 387--391
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 392--396
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 397--401
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 421--425
 [][] 
  []
 
 File: ../img/utaustin_trans.png Graphic file (type bmp)
 <../img/utaustin_trans.png>
 [3]
-
-Package fontspec Info: Arial scale = 0.8625210024688017.
-
-
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 418--422
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 426--430
 [][] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 423--427
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 431--435
 [][] 
  []
 
 
-Package fontspec Info: Arial scale = 0.8625210024688017.
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 437--441
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 442--446
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 447--451
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 452--456
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 457--461
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 462--466
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 467--471
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 436--440
 [][] 
  []
 
@@ -1144,7 +1100,58 @@ Overfull \hbox (13.99998pt too wide) in paragraph at lines 467--471
 Package fontspec Info: Arial scale = 0.8625210024688017.
 
 
-Overfull \hbox (35.99998pt too wide) in paragraph at lines 481--485
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 457--461
+[][] 
+ []
+
+
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 462--466
+[][] 
+ []
+
+
+Package fontspec Info: Arial scale = 0.8625210024688017.
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 476--480
+[][] 
+ []
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 481--485
+[][] 
+ []
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 486--490
+[][] 
+ []
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 491--495
+[][] 
+ []
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 496--500
+[][] 
+ []
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 501--505
+[][] 
+ []
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 506--510
+[][] 
+ []
+
+
+Package fontspec Info: Arial scale = 0.8625210024688017.
+
+
+Overfull \hbox (35.99998pt too wide) in paragraph at lines 520--524
 [][] 
  []
 
@@ -1161,10 +1168,10 @@ Package rerunfilecheck Info: File `sooyonglee_vitae_cv_newversion.out' has not c
 Here is how much of TeX's memory you used:
  19081 strings out of 476929
  346768 string characters out of 5805262
- 1945189 words of memory out of 5000000
+ 1947189 words of memory out of 5000000
  40674 multiletter control sequences out of 15000+600000
  562119 words of font info for 94 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,11n,132p,535b,482s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,12n,132p,535b,482s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on sooyonglee_vitae_cv_newversion.pdf (4 pages).

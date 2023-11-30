@@ -331,7 +331,7 @@ readGoogleSheets("Experience") %>%
 
 ### Teaching Assistant
 
-Univeristy of Texas at Austin
+University of Texas at Austin
 
 ```{r results = 'asis'}
 teaching_entry <- function(Year, Position, Name, note, Desc) {

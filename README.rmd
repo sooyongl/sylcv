@@ -10,16 +10,13 @@ library(knitr)
 # pdf_convert("CV/sooyonglee_vitae_cv_newversion.pdf", 
 #             format = "png", 
 #             pages = NULL, 
-#             filenames = NULL, dpi = 300, opw = "", upw = "", verbose = TRUE)
+#             filenames = NULL)
 #
 # fs::file_move(fs::dir_ls(".", regexp = "\\.png$"),
-#               paste0("CVpng/",fs::dir_ls(".", regexp = "\\.png$")))
+#               paste0("img/",fs::dir_ls(".", regexp = "\\.png$")))
 
-a1 <- fs::dir_ls("CVpng", regexp = "\\.png$")
+a1 <- fs::dir_ls("img", regexp = "cv.*_\\d{1}\\.png$")
 ```
-
-
-
 ```{r } 
 
 # for(i in a1) {
