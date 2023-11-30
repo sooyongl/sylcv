@@ -9,23 +9,18 @@ fontsize: 10pt
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-  results='asis',
-  echo = FALSE, warning = FALSE, message = FALSE)
-# library(vitae)
+  results='asis', echo = FALSE, warning = FALSE, message = FALSE)
+
 library(glue)
 library(tidyverse)
-
 library(tidyverse)
-
 library(readxl)
 
 # for(R in fs::dir_ls("source/new_make.R")) {source(R)}
-
-source("source/new_make.R")
-source("source/read_GoogleSheets.R")
+source("../source/new_make.R")
+source("../source/read_GoogleSheets.R")
 
 # Latex code generators functions
-
 header1 <- function(title) {
   title <- str_replace_all(title, fixed("&"), "\\&")
   
@@ -66,8 +61,6 @@ two_entry <- function(a1, a2, width = c(0.2, 0.8)) {
   
   a1 <- str_replace_all(a1, fixed("&"), "\\&")
   a2 <- str_replace_all(a2, fixed("&"), "\\&")
-  # a3 <- str_replace_all(a3, fixed("&"), "\\&")
-  # a4 <- str_replace_all(a4, fixed("&"), "\\&")
   
   glue("
 \\begin{tabular}{p{<<width[1]>>\\textwidth} p{<<width[2]>>\\textwidth} }
@@ -82,8 +75,6 @@ three_entry <- function(a1, a2, a3) {
   
   a1 <- str_replace_all(a1, fixed("&"), "\\&")
   a2 <- str_replace_all(a2, fixed("&"), "\\&")
-  # a3 <- str_replace_all(a3, fixed("&"), "\\&")
-  # a4 <- str_replace_all(a4, fixed("&"), "\\&")
   
   glue("
 \\begin{tabular}{p{0.2\\textwidth} p{0.6\\textwidth} p{0.2\\textwidth} }
@@ -94,12 +85,10 @@ three_entry <- function(a1, a2, a3) {
 .open = "<<", .close = ">>")
 }
 
-
 ```
 
 <!-- My info -->
 ```{r}
-
 maketitle <- function(name, position, institute, contact) {
   
   name <- str_replace_all(name, fixed("&"), "\\&")
@@ -129,6 +118,37 @@ maketitle("Sooyong Lee, Ph.D.",
 As a psychometrician, I specialize in applying contemporary statistical theories and techniques to my work. My research interests center around developing and utilizing statistical models, including structural equation modeling (SEM), multilevel modeling (MLM), item response theory (IRT), and mixture modeling. In my recent work, I have placed particular emphasis on Bayesian estimation as a means of modeling the relationships between variables.
 \end{flushleft}
 
+<!-- `r header1("CONTACTS OF REFERENCES")` -->
+
+<!-- \begin{tabular}{p{0.4\textwidth}@{\hspace{-10pt}}@{}p{0.3\textwidth} p{0.3\textwidth} } -->
+
+<!-- 1.	\textbf{Tiffany A. Whittaker} -->
+
+<!-- The University of Texas at Austin   -->
+
+<!-- \textbf{Email}: t.whittaker@austin.utexas.edu -->
+
+<!-- \textbf{Phone}: 512-471-2749     &  -->
+
+<!-- 2.	\textbf{Seung W. Choi} -->
+
+<!-- The University of Texas at Austin   -->
+
+<!-- \textbf{Email}: schoi@austin.utexas.edu -->
+
+<!-- \textbf{Phone}: 512-471-2751 &   -->
+
+<!-- 3.	\textbf{Cory L. Cobb} -->
+
+<!-- Texas A\&M University -->
+
+<!-- \textbf{Email}: cory.cobb@tamu.edu -->
+
+<!-- \textbf{Phone}: 501-749-3382  -->
+
+<!-- \end{tabular} -->
+
+
 <!-- My Education-->
 `r header1("EDUCATION")`
 
@@ -141,10 +161,10 @@ edu_entry <- function(year, position, school, location, Details) {
   location <- str_replace_all(location, fixed("&"), "\\&")
   
   glue("
-\\begin{tabular}{p{0.15\\textwidth}@{\\hspace{-10pt}}@{}p{0.7\\textwidth} p{0.5\\textwidth} }
-  \\textbf{<<year>>} & <<position>>, <<school>> & <<location>>  \\\\\\
-
-  &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<Details>>}   \\\\\\
+\\begin{tabular}{p{0.15\\textwidth}@{\\hspace{-10pt}}@{}p{0.85\\textwidth}  }
+  \\textbf{<<year>>} & <<position>> \\\\\\
+                     & <<school>>,  <<location>>  \\\\\\
+                     &  \\multicolumn{1}{p{0.85\\textwidth}}{- <<Details>>}   \\\\\\
 
 \\end{tabular}
 
@@ -152,12 +172,11 @@ edu_entry <- function(year, position, school, location, Details) {
 .open = "<<", .close = ">>")
 }
 
-
-
 readGoogleSheets("Education") %>% 
   slice(1:2) %>% 
   mutate(
     # Details = str_replace(Details, "Advi", " \\\\nAdvi"),
+    # Institution = glue("{Institution}, {Location}"),
     tex = edu_entry(Year, Degree, Institution, Location, Details)
   ) %>% pull(tex)
 
@@ -244,6 +263,8 @@ temp %>%
 \setlength{\leftskip}{0cm}
 \par\bigskip
 
+<!-- \vspace{10em} -->
+
 `r header1("NATIONAL AND INTERNATIONAL PRESENTATIONS")`
 
 \begin{flushleft} \textbf{Presentations} \end{flushleft}
@@ -281,17 +302,10 @@ readGoogleSheets("Presentation") %>%
 
 `r header1("RESEARCH")`
 
-<!-- Post-doc Fellow -->
-
-<!-- Research Assistant -->
-
-<!-- Intern -->
-
 ```{r results = 'asis'}
-
 research_entry <- function(a1, a2, a3, a4) {
   glue("
-\\begin{tabular}{p{0.2\\textwidth} p{0.6\\textwidth} p{0.2\\textwidth} }
+\\begin{tabular}{p{0.2\\textwidth}@{\\hspace{-10pt}}@{}p{0.6\\textwidth} p{0.2\\textwidth} }
 
   <<a1>> & <<a2>> & <<a3>> \\\\\\
          &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<a4>>}   \\\\\\

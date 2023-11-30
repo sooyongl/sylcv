@@ -10,9 +10,9 @@ library(knitr)
 
 
 ```{r width='1000px', height='2000px'} 
-# include_graphics("sooyonglee_vitae_cv_newversion.pdf")
+# include_graphics("CV/sooyonglee_vitae_cv_newversion.pdf")
 ```
 
 <!-- [embed]sooyonglee_vitae_cv_newversion.pdf[/embed] -->
 
-![](sooyonglee_vitae_cv_newversion.pdf){width=2000px, height=1500px}
+![](CV/sooyonglee_vitae_cv_newversion.pdf){width=2000px, height=1500px}

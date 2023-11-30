@@ -30,7 +30,9 @@ library(here)
 library(tidyverse)
 library(googlesheets4)
 library(readxl)
-for(R in fs::dir_ls("source")) {source(R)}
+for(R in fs::dir_ls("../source")) {source(R)}
+
+
 ```
 
 
