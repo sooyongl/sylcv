@@ -25,19 +25,6 @@ source("source/new_make.R")
 source("source/read_GoogleSheets.R")
 
 # Latex code generators functions
-maketitle <- function(name, position, institute) {
-  
-  name <- str_replace_all(name, fixed("&"), "\\&")
-  position <- str_replace_all(position, fixed("&"), "\\&")
-  institute <- str_replace_all(institute, fixed("&"), "\\&")
-  
-  glue("\\centering \\textbf{\\Large <<name>>}
-
-\\centering <<position>>
-
-\\centering <<institute>>", .open = "<<", .close = ">>")
-  
-}
 
 header1 <- function(title) {
   title <- str_replace_all(title, fixed("&"), "\\&")
@@ -62,41 +49,6 @@ header2 <- function(title) {
 .open = "<<", .close = ">>")
 }
 
-edu_entry <- function(year, position, school, location) {
-  
-  year <- str_replace_all(year, fixed("&"), "\\&")
-  position <- str_replace_all(position, fixed("&"), "\\&")
-  school <- str_replace_all(school, fixed("&"), "\\&")
-  location <- str_replace_all(location, fixed("&"), "\\&")
-  
-  glue("
-\\begin{tabular}{p{0.15\\textwidth}@{\\hspace{-10pt}}@{}p{0.7\\textwidth} p{0.15\\textwidth} }
-  \\textbf{<<year>>} & <<position>>, <<school>> & <<location>> 
-\\end{tabular}", 
-.open = "<<", .close = ">>")
-}
-
-
-pub_entry <- function(number, year, name, title, journal, page) {
-  
-  year <- str_replace_all(year, fixed("&"), "\\&")
-  name <- str_replace_all(name, fixed("&"), "\\&")
-  title <- str_replace_all(title, fixed("&"), "\\&")
-  journal <- str_replace_all(journal, fixed("&"), "\\&")
-  page <- str_replace_all(page, fixed("&"), "\\&")
-  
-  name <- str_replace_all(name, fixed("Sooyong Lee"), "\\textbf{Sooyong Lee}")
-  
-  glue("
-\\begin{tabular}{p{0.05\\textwidth} p{0.95\\textwidth} }
-
-  <<number>> & <<name>>. (<<year>>). <<title>>. \\emph{<<journal>>}, <<page>>
-
-\\end{tabular}", 
-.open = "<<", .close = ">>")
-  
-  # 1. **2023** Sooyong Lee, Kahyun Lee & Tiffany A. Whittaker. *Application of Associative Discrete-Time Survival Analysis Using Latent Transition Specification*. Structural Equation Modeling: A Multidisciplinary Journal, 1-12.
-}
 
 one_entry <- function(a1) {
   
@@ -142,72 +94,71 @@ three_entry <- function(a1, a2, a3) {
 .open = "<<", .close = ">>")
 }
 
-research_entry <- function(a1, a2, a3, a4) {
-  
-  # a1 <- str_replace_all(a1, fixed("&"), "\\&")
-  # a2 <- str_replace_all(a2, fixed("&"), "\\&")
-  # a3 <- str_replace_all(a3, fixed("&"), "\\&")
-  # a4 <- str_replace_all(a4, fixed("&"), "\\&")
-  
-  glue("
-\\begin{tabular}{p{0.2\\textwidth} p{0.6\\textwidth} p{0.2\\textwidth} }
-
-  <<a1>> & <<a2>> & <<a3>> \\\\\\
-         &  - <<a4>> &   \\\\\\
-
-\\end{tabular}
-
-", 
-.open = "<<", .close = ">>")
-}
-
-software_entry <- function(type, year, name, title, what, link) {
-  
-  # a1 <- str_replace_all(a1, fixed("&"), "\\&")
-  # a2 <- str_replace_all(a2, fixed("&"), "\\&")
-  # a3 <- str_replace_all(a3, fixed("&"), "\\&")
-  # a4 <- str_replace_all(a4, fixed("&"), "\\&")
-  name <- str_replace(name, fixed("Sooyong Lee"), '\\textbf{Sooyong Lee}')
-  
-  glue("
-\\begin{tabular}{p{0.2\\textwidth}@{\\hspace{-10pt}}@{}p{0.7\\textwidth} p{0.1\\textwidth} }
-
-  <<type>> & <<title>> & <<year>> \\\\\\
-         &  <<name>> &   \\\\\\
-         &  <<what>> &   \\\\\\
-         &  <<link>> &   \\\\\\
-
-\\end{tabular}
-
-", 
-.open = "<<", .close = ">>")
-}
 
 ```
 
 <!-- My info -->
 ```{r}
-maketitle("Sooyong Lee, Ph.D.", "Post-Doc Fellow", "The University of Texas at Austin")
+
+maketitle <- function(name, position, institute, contact) {
+  
+  name <- str_replace_all(name, fixed("&"), "\\&")
+  position <- str_replace_all(position, fixed("&"), "\\&")
+  institute <- str_replace_all(institute, fixed("&"), "\\&")
+  
+  glue("\\centering \\textbf{\\Large <<name>>}
+
+\\centering <<position>>
+
+\\centering <<institute>>
+
+\\centering <<contact>>", .open = "<<", .close = ">>")
+  
+}
+
+maketitle("Sooyong Lee, Ph.D.", 
+          "Post-Doc Fellow", 
+          "Educational Psychology\n\nThe University of Texas at Austin",
+          "\\faEnvelope: sooyongl09@gmail.com | \\orcid{0000-0002-7964-4508}: 0000-0002-7964-4508 | \\faGithub: sooyongl/")
+
 ```
 
 `r header1("PROFESSIONAL SUMMARY")`
 
+\begin{flushleft}
 As a psychometrician, I specialize in applying contemporary statistical theories and techniques to my work. My research interests center around developing and utilizing statistical models, including structural equation modeling (SEM), multilevel modeling (MLM), item response theory (IRT), and mixture modeling. In my recent work, I have placed particular emphasis on Bayesian estimation as a means of modeling the relationships between variables.
-
+\end{flushleft}
 
 <!-- My Education-->
-```{r}
-header1("EDUCATION")
-header2("Graduate and Postdoctoral Education")
-```
+`r header1("EDUCATION")`
 
 ```{r}
-# edu_entry("2011-2016", "Post-doctoral Fellow in Learning Sciences","University of Washington","Seattle, WA")
+edu_entry <- function(year, position, school, location, Details) {
+  
+  year <- str_replace_all(year, fixed("&"), "\\&")
+  position <- str_replace_all(position, fixed("&"), "\\&")
+  school <- str_replace_all(school, fixed("&"), "\\&")
+  location <- str_replace_all(location, fixed("&"), "\\&")
+  
+  glue("
+\\begin{tabular}{p{0.15\\textwidth}@{\\hspace{-10pt}}@{}p{0.7\\textwidth} p{0.5\\textwidth} }
+  \\textbf{<<year>>} & <<position>>, <<school>> & <<location>>  \\\\\\
+
+  &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<Details>>}   \\\\\\
+
+\\end{tabular}
+
+", 
+.open = "<<", .close = ">>")
+}
+
+
 
 readGoogleSheets("Education") %>% 
   slice(1:2) %>% 
   mutate(
-    tex = edu_entry(Year, Degree, Institution, Location)
+    # Details = str_replace(Details, "Advi", " \\\\nAdvi"),
+    tex = edu_entry(Year, Degree, Institution, Location, Details)
   ) %>% pull(tex)
 
 
@@ -220,11 +171,31 @@ readGoogleSheets("Education") %>%
 \par\bigskip
 
 <!-- My Research-->
-```{r}
-header1("PUBLICATIONS")
-```
+`r header1("PUBLICATIONS")`
+
 
 ```{r eval = T, echo = F, results = 'hide'}
+pub_entry <- function(number, year, name, title, journal, page) {
+  
+  year <- str_replace_all(year, fixed("&"), "\\&")
+  name <- str_replace_all(name, fixed("&"), "\\&")
+  title <- str_replace_all(title, fixed("&"), "\\&")
+  journal <- str_replace_all(journal, fixed("&"), "\\&")
+  page <- str_replace_all(page, fixed("&"), "\\&")
+  
+  name <- str_replace_all(name, fixed("Sooyong Lee"), "\\textbf{Sooyong Lee}")
+  
+  glue("
+\\begin{tabular}{p{0.05\\textwidth} p{0.95\\textwidth} }
+
+  <<number>> & <<name>>. (<<year>>). <<title>>. \\emph{<<journal>>}, <<page>>
+
+\\end{tabular}", 
+.open = "<<", .close = ">>")
+  
+  # 1. **2023** Sooyong Lee, Kahyun Lee & Tiffany A. Whittaker. *Application of Associative Discrete-Time Survival Analysis Using Latent Transition Specification*. Structural Equation Modeling: A Multidisciplinary Journal, 1-12.
+}
+
 a1 <- readGoogleSheets("Publication") %>%
   filter(type == "article")
 # 
@@ -317,6 +288,20 @@ readGoogleSheets("Presentation") %>%
 <!-- Intern -->
 
 ```{r results = 'asis'}
+
+research_entry <- function(a1, a2, a3, a4) {
+  glue("
+\\begin{tabular}{p{0.2\\textwidth} p{0.6\\textwidth} p{0.2\\textwidth} }
+
+  <<a1>> & <<a2>> & <<a3>> \\\\\\
+         &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<a4>>}   \\\\\\
+
+\\end{tabular}
+
+", 
+.open = "<<", .close = ">>")
+}
+
 readGoogleSheets("Experience") %>%
   dplyr::arrange(desc(Year)) %>%
   mutate(
@@ -326,29 +311,78 @@ readGoogleSheets("Experience") %>%
 ```
 
 
-
+\par\bigskip
 
 `r header1("TEACHING")`
 
+### Teaching Assistant
+
+Univeristy of Texas at Austin
+
 ```{r results = 'asis'}
-# readGoogleSheets("Teaching") %>%
-#     dplyr::arrange(desc(Year)) %>%
-#   mk_entry(what = "note",
-#            when = "Year",
-#            where = "Position",
-#            with = "Name",
-#            why = "Desc")
+teaching_entry <- function(Year, Position, Name, note, Desc) {
+  
+  
+  glue("
+\\begin{tabular}{p{0.8\\textwidth} p{0.2\\textwidth}  }
+
+  <<Name>> & <<Year>>  \\\\\\
+  <<note>> &   \\\\\\
+
+\\end{tabular}
+
+", 
+.open = "<<", .close = ">>")
+}
+
+
+readGoogleSheets("Teaching") %>%
+    dplyr::arrange(desc(Year)) %>%
+  mutate(
+    Desc = "Univeristy of Texas at Austin",
+    out = teaching_entry(Year, Position, Name, note, Desc)
+  ) %>% 
+  pull(out)
 ```
 
 `r header1("PROGRAMS")`
 
 ```{r results = 'asis'}
+software_entry <- function(type, year, name, title, what, link) {
+  name <- str_replace(name, fixed("Sooyong Lee"), '\\textbf{Sooyong Lee}')
+  
+  glue("
+\\begin{tabular}{p{0.2\\textwidth}@{\\hspace{-10pt}}@{}p{0.7\\textwidth} p{0.1\\textwidth} }
+
+  <<type>> & <<title>> & <<year>> \\\\\\
+         &  <<name>> &   \\\\\\
+
+\\end{tabular}
+
+", 
+.open = "<<", .close = ">>")
+}
+
+
 readGoogleSheets("Software") %>%
   dplyr::arrange(desc(year)) %>% 
   mutate(url = paste0("\\url{", url, "} "),
          # author = paste0(author, "\n", url),
-         out = software_entry(note, year, url, author, "", "")          
+         out = software_entry(note, year, url, author, "", "")
   ) %>%
+  pull(out)
+
+```
+
+`r header1("SERVICE")`
+
+
+```{r results = 'asis'}
+readGoogleSheets("Service") %>%
+   dplyr::arrange(desc(Year)) %>% 
+  mutate(
+    out = three_entry(Position, Name, Year)
+  ) %>% 
   pull(out)
 
 ```

@@ -39,6 +39,36 @@ for(R in fs::dir_ls("source")) {source(R)}
 As a psychometrician, I specialize in applying contemporary statistical theories and techniques to my work. My research interests center around developing and utilizing statistical models, including structural equation modeling (SEM), multilevel modeling (MLM), item response theory (IRT), and mixture modeling. In my recent work, I have placed particular emphasis on Bayesian estimation as a means of modeling the relationships between variables.
 
 
+# Contacts of References
+
+\begin{tabular}{p{0.4\textwidth}@{\hspace{-10pt}}@{}p{0.3\textwidth} p{0.3\textwidth} }
+
+1.	\textbf{Tiffany A. Whittaker}
+
+The University of Texas at Austin  
+
+\textbf{Email}: t.whittaker@austin.utexas.edu
+
+\textbf{Phone}: 512-471-2749     & 
+
+2.	\textbf{Seung W. Choi}
+
+The University of Texas at Austin  
+
+\textbf{Email}: schoi@austin.utexas.edu
+
+\textbf{Phone}: 512-471-2751 &  
+
+3.	\textbf{Cory L. Cobb}
+
+Texas A\&M University
+
+\textbf{Email}: cory.cobb@tamu.edu
+
+\textbf{Phone}: 501-749-3382 \\
+
+\end{tabular}
+
 
 # Education
 
@@ -211,17 +241,17 @@ readGoogleSheets("Service") %>%
 
 ```
 
-# Fellowship & Awards
+<!-- # Fellowship & Awards -->
 
 ```{r results = 'asis'}
-readGoogleSheets("FellowshipAwards") %>%
-   dplyr::arrange(desc(Year)) %>% 
-  mk_entry(
-    when = "Year",
-    where = "Type",
-    with = "Desc",
-    entry_nm = "cvhonor"
-  )
+# readGoogleSheets("FellowshipAwards") %>%
+#    dplyr::arrange(desc(Year)) %>% 
+#   mk_entry(
+#     when = "Year",
+#     where = "Type",
+#     with = "Desc",
+#     entry_nm = "cvhonor"
+#   )
 
 ```
 
