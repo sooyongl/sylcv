@@ -9,10 +9,10 @@ library(knitr)
 
 
 
-```{r out.width = "85%", out.height="150%"} 
-include_graphics("sooyonglee_vitae_cv_newversion.pdf")
+```{r width='1000px', height='2000px'} 
+# include_graphics("sooyonglee_vitae_cv_newversion.pdf")
 ```
 
 <!-- [embed]sooyonglee_vitae_cv_newversion.pdf[/embed] -->
 
-<!-- ![Alternate Name](sooyonglee_vitae_cv_newversion.pdf){width=1000px, height=2000px} -->
+![](sooyonglee_vitae_cv_newversion.pdf){width=2000px, height=1500px}
