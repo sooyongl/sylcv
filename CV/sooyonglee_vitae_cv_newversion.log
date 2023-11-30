@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.11.26)  30 NOV 2023 07:21
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.11.26)  30 NOV 2023 08:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -934,12 +934,15 @@ LaTeX Font Info:    Font shape `TU/Arial(0)/b/n' will be
 Package fontspec Info: Arial scale = 0.8625210024688017.
 
 
-Overfull \hbox (7.99998pt too wide) in paragraph at lines 154--157
+Package fontspec Info: Arial scale = 0.8625210024688017.
+
+
+Overfull \hbox (7.99998pt too wide) in paragraph at lines 163--166
  [][] 
  []
 
 
-Overfull \hbox (7.99998pt too wide) in paragraph at lines 158--161
+Overfull \hbox (7.99998pt too wide) in paragraph at lines 167--170
  [][] 
  []
 
@@ -947,69 +950,69 @@ Overfull \hbox (7.99998pt too wide) in paragraph at lines 158--161
 Package fontspec Info: Arial scale = 0.8625210024688017.
 
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 177.
+(Font)              scaled to size 10.0pt on input line 186.
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [][] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 175--240
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 184--249
  [] 
  []
 
@@ -1018,22 +1021,22 @@ File: ../img/utaustin_trans.png Graphic file (type bmp)
 [1
 
 ]
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 243--258
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 252--267
  [][] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 243--258
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 252--267
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 243--258
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 252--267
  [] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 261--266
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 270--275
  [][] 
  []
 
@@ -1047,42 +1050,42 @@ File: ../img/utaustin_trans.png Graphic file (type bmp)
 Package fontspec Info: Arial scale = 0.8625210024688017.
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 359--363
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 368--372
 [][] 
  []
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 364--368
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 373--377
 [][] 
  []
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 369--373
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 378--382
 [][] 
  []
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 374--378
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 383--387
 [][] 
  []
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 379--383
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 388--392
 [][] 
  []
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 384--388
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 393--397
 [][] 
  []
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 389--393
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 398--402
 [][] 
  []
 
 
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 394--398
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 403--407
 [][] 
  []
 
@@ -1093,50 +1096,12 @@ File: ../img/utaustin_trans.png Graphic file (type bmp)
 Package fontspec Info: Arial scale = 0.8625210024688017.
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 415--419
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 424--428
 [][] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 420--424
-[][] 
- []
-
-
-Package fontspec Info: Arial scale = 0.8625210024688017.
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 434--438
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 439--443
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 444--448
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 449--453
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 454--458
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 459--463
-[][] 
- []
-
-
-Overfull \hbox (13.99998pt too wide) in paragraph at lines 464--468
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 429--433
 [][] 
  []
 
@@ -1144,7 +1109,45 @@ Overfull \hbox (13.99998pt too wide) in paragraph at lines 464--468
 Package fontspec Info: Arial scale = 0.8625210024688017.
 
 
-Overfull \hbox (35.99998pt too wide) in paragraph at lines 478--482
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 443--447
+[][] 
+ []
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 448--452
+[][] 
+ []
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 453--457
+[][] 
+ []
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 458--462
+[][] 
+ []
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 463--467
+[][] 
+ []
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 468--472
+[][] 
+ []
+
+
+Overfull \hbox (13.99998pt too wide) in paragraph at lines 473--477
+[][] 
+ []
+
+
+Package fontspec Info: Arial scale = 0.8625210024688017.
+
+
+Overfull \hbox (35.99998pt too wide) in paragraph at lines 487--491
 [][] 
  []
 
