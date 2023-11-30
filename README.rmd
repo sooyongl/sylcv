@@ -7,11 +7,11 @@ knitr::opts_chunk$set(echo = F)
 library(knitr)
 
 # library(pdftools)
-# pdf_convert("CV/sooyonglee_vitae_cv_newversion.pdf", 
-#             format = "png", 
-#             pages = NULL, 
+# pdf_convert("CV/sooyonglee_vitae_cv_newversion.pdf",
+#             format = "png",
+#             pages = NULL,
 #             filenames = NULL)
-#
+# 
 # fs::file_move(fs::dir_ls(".", regexp = "\\.png$"),
 #               paste0("img/",fs::dir_ls(".", regexp = "\\.png$")))
 
