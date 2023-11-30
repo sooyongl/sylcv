@@ -1,0 +1,18 @@
+---
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+library(knitr)
+```
+
+
+
+```{r out.width = "85%", out.height="150%"} 
+include_graphics("sooyonglee_vitae_cv_newversion.pdf")
+```
+
+<!-- [embed]sooyonglee_vitae_cv_newversion.pdf[/embed] -->
+
+<!-- ![Alternate Name](sooyonglee_vitae_cv_newversion.pdf){width=1000px, height=2000px} -->
