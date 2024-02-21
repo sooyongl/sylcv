@@ -13,7 +13,6 @@ knitr::opts_chunk$set(
 
 library(glue)
 library(tidyverse)
-library(tidyverse)
 library(readxl)
 
 # for(R in fs::dir_ls("source/new_make.R")) {source(R)}
@@ -247,6 +246,16 @@ temp <- a1 %>%
 
 ```
 
+\begin{flushleft} \textbf{2024} \end{flushleft}
+<!-- \setlength{\leftskip}{0.5cm} -->
+
+```{r}
+temp %>% 
+  filter(year == "2024") %>%
+  pull(out)
+
+```
+
 
 \begin{flushleft} \textbf{2023} \end{flushleft}
 <!-- \setlength{\leftskip}{0.5cm} -->
@@ -398,6 +407,7 @@ software_entry <- function(type, year, name, title, what, link) {
 
 
 readGoogleSheets("Software") %>%
+  mutate(url = if_else(is.na(url), "", url)) %>% 
   dplyr::arrange(desc(year)) %>% 
   mutate(url = paste0("\\url{", url, "} "),
          # author = paste0(author, "\n", url),
