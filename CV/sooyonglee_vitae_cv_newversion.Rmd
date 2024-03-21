@@ -105,8 +105,8 @@ maketitle <- function(name, position, institute, contact) {
 }
 
 maketitle("Sooyong Lee, Ph.D.", 
-          "Post-Doc Fellow", 
-          "Educational Psychology\n\nThe University of Texas at Austin",
+          "Psychometrician", 
+          "WIDA\n\nThe University of Wisconsin-Madison",
           "\\faEnvelope: sooyongl09@gmail.com | \\orcid{0000-0002-7964-4508}: 0000-0002-7964-4508 | \\faGithub: sooyongl/")
 
 ```
@@ -117,7 +117,7 @@ maketitle("Sooyong Lee, Ph.D.",
 As a psychometrician, I specialize in applying contemporary statistical theories and techniques to my work. My research interests center around developing and utilizing statistical models, including structural equation modeling (SEM), multilevel modeling (MLM), item response theory (IRT), and mixture modeling. In my recent work, I have placed particular emphasis on Bayesian estimation as a means of modeling the relationships between variables.
 \end{flushleft}
 
-`r header1("CONTACTS OF REFERENCES")`
+<!-- `r header1("CONTACTS OF REFERENCES")` -->
 
 <!-- \begin{tabular}{p{0.4\textwidth}@{\hspace{-10pt}}@{}p{0.4\textwidth}@{\hspace{-10pt}}@{}p{0.3\textwidth} } -->
 

@@ -5,15 +5,17 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = F)
 library(knitr)
+if(FALSE) {
+  library(pdftools)
+  pdf_convert("CV/sooyonglee_vitae_cv_newversion.pdf",
+              format = "png",
+              pages = NULL,
+              filenames = NULL)
+  
+  fs::file_move(fs::dir_ls(".", regexp = "\\.png$"),
+                paste0("img/",fs::dir_ls(".", regexp = "\\.png$")))
+}
 
-library(pdftools)
-pdf_convert("CV/sooyonglee_vitae_cv_newversion.pdf",
-            format = "png",
-            pages = NULL,
-            filenames = NULL)
-
-fs::file_move(fs::dir_ls(".", regexp = "\\.png$"),
-              paste0("img/",fs::dir_ls(".", regexp = "\\.png$")))
 
 a1 <- fs::dir_ls("img", regexp = "cv.*_\\d{1}\\.png$")
 ```
