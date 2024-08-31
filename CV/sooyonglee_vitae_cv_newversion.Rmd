@@ -191,12 +191,14 @@ edu_entry <- function(year, position, school, location, Details) {
 }
 
 readGoogleSheets("Education") %>% 
-  slice(1:2) %>% 
+  mutate_all(~ case_when(is.na(.x) ~ " ", TRUE ~ .x)) %>% 
+  # slice(1:2) %>% 
   mutate(
     # Details = str_replace(Details, "Advi", " \\\\nAdvi"),
     # Institution = glue("{Institution}, {Location}"),
     tex = edu_entry(Year, Degree, Institution, Location, Details)
-  ) %>% pull(tex)
+  ) %>% 
+  pull(tex)
 
 
 ```
