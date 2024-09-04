@@ -248,13 +248,31 @@ temp <- a1 %>%
 
 ```
 
+
+\begin{flushleft} \textbf{In preparation} \end{flushleft}
+
+```{r}
+temp %>% 
+  filter(str_detect(note, "preparation")) %>% 
+  filter(year == "2024") %>%
+  pull(out)
+
+```
+
+
 \begin{flushleft} \textbf{2024} \end{flushleft}
 <!-- \setlength{\leftskip}{0.5cm} -->
 
 ```{r}
 temp %>% 
+  filter(!str_detect(note, "preparation")) %>% 
   filter(year == "2024") %>%
   pull(out)
+
+
+# Gianopulos, G., Lee, J., Lim, S., Niu, L., Lee, S., & Choi, S. W. (in press). The impact of item pool size and item pool distribution on student ability estimates for a hybrid interim-summative CAT. Journal of Computerized Adaptive Testing.
+
+# Lee, J., Lim, S., Schneider, M. C., Gianopulos, G., Niu, L., Lee, S., & Choi, S. W. (in press). The impact of item bank transition rules on student ability estimates and achievement level classifications. Journal of Computerized Adaptive Testing.
 
 ```
 
@@ -448,7 +466,14 @@ readGoogleSheets("Service") %>%
 ```
 
 
-
+```{r}
+# header1("Military Experience")
+# 
+# Leadership Rank: Sergeant
+# Honorable discharge – 2009
+# Army of Republic of Korea
+# [10, 2007] – [09, 2009]
+```
 
 
 
