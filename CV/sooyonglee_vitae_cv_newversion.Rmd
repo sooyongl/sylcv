@@ -307,6 +307,14 @@ temp %>%
 
 ```
 
+\begin{flushleft} \textbf{2020} and earlier \end{flushleft}
+
+```{r}
+temp %>% 
+  filter(year %in% c("2020","2019","2018","2017","2016")) %>%
+  pull(out)
+
+```
 
 \setlength{\leftskip}{0cm}
 \par\bigskip
