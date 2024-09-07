@@ -240,7 +240,8 @@ a1 <- readGoogleSheets("Publication") %>%
 # 
 temp <- a1 %>%
   # filter(year == "2023") %>%
-  mk_pub_new(exclude = "doi") %>%
+  # mk_pub_new(exclude = "doi") %>%
+   mk_pub_new() %>%
   mutate(
     number = row_number(),
     out = two_entry('-', out, c(0.01, 0.99))
