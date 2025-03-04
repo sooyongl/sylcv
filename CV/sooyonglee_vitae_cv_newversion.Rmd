@@ -255,19 +255,19 @@ temp <- a1 %>%
 ```{r}
 temp %>% 
   filter(str_detect(note, "preparation")) %>% 
-  filter(year == "2024") %>%
+  filter(year == "2025") %>%
   pull(out)
 
 ```
 
 
-\begin{flushleft} \textbf{2024} \end{flushleft}
+\begin{flushleft} \textbf{2025} \end{flushleft}
 <!-- \setlength{\leftskip}{0.5cm} -->
 
 ```{r}
 temp %>% 
   filter(!str_detect(note, "preparation")) %>% 
-  filter(year == "2024") %>%
+  filter(year == "2025") %>%
   pull(out)
 
 
@@ -278,8 +278,17 @@ temp %>%
 ```
 
 
+\begin{flushleft} \textbf{2024} \end{flushleft}
+
+
+```{r}
+temp %>% 
+  filter(year == "2024") %>%
+  pull(out)
+
+```
+
 \begin{flushleft} \textbf{2023} \end{flushleft}
-<!-- \setlength{\leftskip}{0.5cm} -->
 
 ```{r}
 temp %>% 
