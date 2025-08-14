@@ -107,7 +107,9 @@ maketitle <- function(name, position, institute, contact) {
 maketitle("Sooyong Lee, Ph.D.", 
           "Psychometrician", 
           "WIDA\n\nThe University of Wisconsin-Madison",
-          "\\faEnvelope: sooyongl09@gmail.com | \\orcid{0000-0002-7964-4508}: 0000-0002-7964-4508 | \\faGithub: sooyongl/")
+          "\\faEnvelope: sooyongl09@gmail.com | \\orcid{0000-0002-7964-4508}: 0000-0002-7964-4508 | \\aiGoogleScholar\\href{https://scholar.google.com/citations?user=XIoJogsAAAAJ&hl=ko&oi=sra}{Google Scholar} |\\faGithub: sooyongl/")
+
+
 
 ```
 
@@ -250,7 +252,7 @@ temp <- a1 %>%
 ```
 
 
-\begin{flushleft} \textbf{In preparation} \end{flushleft}
+\begin{flushleft} \textbf{In Preparation} \end{flushleft}
 
 ```{r}
 temp %>% 
@@ -261,12 +263,22 @@ temp %>%
 ```
 
 
+\begin{flushleft} \textbf{Under Review} \end{flushleft}
+
+```{r}
+temp %>% 
+  filter(str_detect(note, "review")) %>% 
+  filter(year == "2025") %>%
+  pull(out)
+
+```
+
 \begin{flushleft} \textbf{2025} \end{flushleft}
 <!-- \setlength{\leftskip}{0.5cm} -->
 
 ```{r}
 temp %>% 
-  filter(!str_detect(note, "preparation")) %>% 
+  filter(!str_detect(note, "preparation|review")) %>% 
   filter(year == "2025") %>%
   pull(out)
 
