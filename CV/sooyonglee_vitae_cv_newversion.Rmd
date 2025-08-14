@@ -29,7 +29,7 @@ header1 <- function(title) {
         \\centering
         \\fontspec{Arial} \\textbf{\\Large <<title>>}%
     }%
-}\\par\\bigskip", .open = "<<", .close = ">>")
+}\\medskip", .open = "<<", .close = ">>")
 }
 
 header2 <- function(title) {
@@ -39,7 +39,7 @@ header2 <- function(title) {
 \\begin{flushleft}
   \\fontspec{Arial}
   \\textbf{\\large <<title>>} 
-\\end{flushleft} \\par\\medskip", 
+\\end{flushleft} ", 
 .open = "<<", .close = ">>")
 }
 
@@ -66,7 +66,10 @@ two_entry <- function(a1, a2, width = c(0.2, 0.8)) {
 
   \\textbf{<<a1>>} & <<a2>>
 
-\\end{tabular}", 
+\\end{tabular}
+\\smallskip
+
+", 
 .open = "<<", .close = ">>")
 }
 
@@ -80,7 +83,9 @@ three_entry <- function(a1, a2, a3) {
 
   \\textbf{<<a1>>} & <<a2>> & <<a3>> \\
 
-\\end{tabular}", 
+\\end{tabular}
+
+", 
 .open = "<<", .close = ">>")
 }
 
@@ -107,7 +112,7 @@ maketitle <- function(name, position, institute, contact) {
 maketitle("Sooyong Lee, Ph.D.", 
           "Psychometrician", 
           "WIDA\n\nThe University of Wisconsin-Madison",
-          "\\faEnvelope: sooyongl09@gmail.com | \\orcid{0000-0002-7964-4508}: 0000-0002-7964-4508 | \\aiGoogleScholar\\href{https://scholar.google.com/citations?user=XIoJogsAAAAJ&hl=ko&oi=sra}{Google Scholar} |\\faGithub: sooyongl/")
+          "\\faEnvelope: sooyongl09@gmail.com | \\orcid{0000-0002-7964-4508}: 0000-0002-7964-4508 | \\aiGoogleScholar\\href{https://scholar.google.com/citations?user=XIoJogsAAAAJ&hl=ko&oi=sra}{Google Scholar} | \\faGithub: sooyongl/")
 
 
 
@@ -229,7 +234,8 @@ pub_entry <- function(number, year, name, title, journal, page) {
   glue("
 \\begin{tabular}{p{0.05\\textwidth} p{0.95\\textwidth} }
 
-  <<number>> & <<name>>. (<<year>>). <<title>>. \\emph{<<journal>>}, <<page>>
+  <<number>> & {\\hangindent=1.5em \\hangafter=1 
+  <<name>>. (<<year>>). <<title>>. \\emph{<<journal>>}, <<page>> }
 
 \\end{tabular}", 
 .open = "<<", .close = ">>")
@@ -407,7 +413,7 @@ readGoogleSheets("Experience") %>%
 
 `r header1("TEACHING")`
 
-### Teaching Assistant
+`r header2("Teaching Assistant")`
 
 University of Texas at Austin
 

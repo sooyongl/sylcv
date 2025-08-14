@@ -40,7 +40,7 @@ mk_pub_new <- function(data, exclude = NULL) {
                            TRUE ~ .x)) %>% 
     mutate(
       out = 
-        glue::glue("<<author>> (<<year>>). <<title>>. <<journal>><<volum>><<number>><<doi>><<note>>",
+        glue::glue(" <<author>> (<<year>>). <<title>>. <<journal>><<volum>><<number>><<doi>><<note>>",
                    .open = "<<", .close = ">>")
     )
   
