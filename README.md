@@ -1,5 +1,5 @@
 
-![](img/sooyonglee_vitae_cv_newversion_1.png)<!-- -->![](img/sooyonglee_vitae_cv_newversion_2.png)<!-- -->![](img/sooyonglee_vitae_cv_newversion_3.png)<!-- -->![](img/sooyonglee_vitae_cv_newversion_4.png)<!-- -->![](img/sooyonglee_vitae_cv_newversion_5.png)<!-- -->
+<img src="img/sooyonglee_vitae_cv_newversion_1.png" width="612" /><img src="img/sooyonglee_vitae_cv_newversion_2.png" width="612" /><img src="img/sooyonglee_vitae_cv_newversion_3.png" width="612" /><img src="img/sooyonglee_vitae_cv_newversion_4.png" width="612" /><img src="img/sooyonglee_vitae_cv_newversion_5.png" width="612" /><img src="img/sooyonglee_vitae_cv_newversion_6.png" width="612" />
 
 <!-- [embed]sooyonglee_vitae_cv_newversion.pdf[/embed] -->
 
