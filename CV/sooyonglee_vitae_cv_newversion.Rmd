@@ -278,6 +278,11 @@ temp %>%
   pull(out)
 
 ```
+\newpage 
+
+<!-- My Research-->
+`r header1("PUBLICATIONS")`
+
 
 \begin{flushleft} \textbf{2025} \end{flushleft}
 <!-- \setlength{\leftskip}{0.5cm} -->
@@ -334,6 +339,9 @@ temp %>%
   pull(out)
 
 ```
+
+
+\newpage 
 
 \begin{flushleft} \textbf{2020} and earlier \end{flushleft}
 
