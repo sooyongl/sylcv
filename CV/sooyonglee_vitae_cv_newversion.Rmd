@@ -291,6 +291,7 @@ temp %>%
 temp %>% 
   filter(!str_detect(note, "preparation|review")) %>% 
   filter(year == "2025") %>%
+  filter(!str_detect(title, "Development of a Method for Handling|DIF Detection With Zero| ABayesian Moderated Nonlinear Factor Analysis|Fully Latent Principal Stratification With| Comparison of Three Approaches to Class")) %>% 
   pull(out)
 
 
@@ -307,6 +308,7 @@ temp %>%
 ```{r}
 temp %>% 
   filter(year == "2024") %>%
+    filter(!str_detect(title, "Development of a Method for Handling|DIF Detection With Zero|A Bayesian Moderated Nonlinear Factor Analysis|Fully Latent Principal Stratification With|Comparison of Three Approaches to Class")) %>% 
   pull(out)
 
 ```
@@ -316,6 +318,7 @@ temp %>%
 ```{r}
 temp %>% 
   filter(year == "2023") %>%
+    filter(!str_detect(title, "Development of a Method for Handling|DIF Detection With Zero|A Bayesian Moderated Nonlinear Factor Analysis|Comparison of Three Approaches to Class")) %>% 
   pull(out)
 
 ```
@@ -326,6 +329,7 @@ temp %>%
 ```{r}
 temp %>% 
   filter(year == "2022") %>%
+    filter(!str_detect(title, "Development of a Method for Handling|DIF Detection With Zero|A Bayesian Moderated Nonlinear Factor Analysis|Fully Latent Principal Stratification With|Comparison of Three Approaches to Class")) %>% 
   pull(out)
 
 ```
@@ -336,6 +340,7 @@ temp %>%
 ```{r}
 temp %>% 
   filter(year == "2021") %>%
+    filter(!str_detect(title, "Development of a Method for Handling|DIF Detection With Zero| ABayesian Moderated Nonlinear Factor Analysis|Fully Latent Principal Stratification With| Comparison of Three Approaches to Class")) %>% 
   pull(out)
 
 ```
