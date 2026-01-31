@@ -263,7 +263,7 @@ temp <- a1 %>%
 ```{r}
 temp %>% 
   filter(str_detect(note, "preparation")) %>% 
-  filter(year == "2025") %>%
+  filter(year == "2026") %>%
   pull(out)
 
 ```
@@ -274,24 +274,34 @@ temp %>%
 ```{r}
 temp %>% 
   filter(str_detect(note, "review")) %>% 
-  filter(year == "2025") %>%
+  filter(year == "2026") %>%
   pull(out)
 
 ```
 
-\begin{flushleft} \textbf{2025} \end{flushleft}
+\begin{flushleft} \textbf{2026} \end{flushleft}
 <!-- \setlength{\leftskip}{0.5cm} -->
 
 ```{r}
 temp %>% 
   filter(!str_detect(note, "preparation|review")) %>% 
-  filter(year == "2025") %>%
+  filter(year == "2026") %>%
   pull(out)
 
 
 # Gianopulos, G., Lee, J., Lim, S., Niu, L., Lee, S., & Choi, S. W. (in press). The impact of item pool size and item pool distribution on student ability estimates for a hybrid interim-summative CAT. Journal of Computerized Adaptive Testing.
 
 # Lee, J., Lim, S., Schneider, M. C., Gianopulos, G., Niu, L., Lee, S., & Choi, S. W. (in press). The impact of item bank transition rules on student ability estimates and achievement level classifications. Journal of Computerized Adaptive Testing.
+
+```
+
+\begin{flushleft} \textbf{2025} \end{flushleft}
+
+
+```{r}
+temp %>% 
+  filter(year == "2025") %>%
+  pull(out)
 
 ```
 
