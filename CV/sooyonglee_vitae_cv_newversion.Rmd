@@ -246,6 +246,17 @@ pub_entry <- function(number, year, name, title, journal, page) {
 a1 <- readGoogleSheets("Publication") %>%
   filter(type == "article")
 # 
+
+
+a1 <- a1 %>% 
+  mutate(note0 = factor(note, c("In preparation", "Under review", "In print",
+                                	'In print (Accepted)'))) %>% 
+  arrange(year, desc(note0), desc(author)) %>% 
+  mutate(
+    num = row_number()
+  ) %>% 
+  relocate(num)
+
 temp <- a1 %>%
   # filter(year == "2023") %>%
   # mk_pub_new(exclude = "doi") %>%
@@ -254,6 +265,8 @@ temp <- a1 %>%
     number = row_number(),
     out = two_entry('-', out, c(0.01, 0.99))
   )
+
+
 
 ```
 
