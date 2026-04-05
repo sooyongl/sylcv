@@ -8,9 +8,16 @@ mk_pub_new <- function(data, exclude = NULL) {
   
   data <- data %>% 
     mutate(
+      author0 = author,
       note = factor(note, c(NA,"In print", "In print (Accepted)", "Under review", "In preparation"))
     ) %>% 
-    arrange(year, note, journal, author) # %>% select(all_of(selection))
+    arrange(year, note, journal, desc(author)) %>% 
+    
+    # %>% select(all_of(selection))
+      mutate(
+        num = row_number()
+      ) %>%
+      relocate(num)
   
   
   

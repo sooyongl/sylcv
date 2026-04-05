@@ -247,16 +247,6 @@ a1 <- readGoogleSheets("Publication") %>%
   filter(type == "article")
 # 
 
-
-a1 <- a1 %>% 
-  mutate(note0 = factor(note, c("In preparation", "Under review", "In print",
-                                	'In print (Accepted)'))) %>% 
-  arrange(year, desc(note0), desc(author)) %>% 
-  mutate(
-    num = row_number()
-  ) %>% 
-  relocate(num)
-
 temp <- a1 %>%
   # filter(year == "2023") %>%
   # mk_pub_new(exclude = "doi") %>%
@@ -277,6 +267,7 @@ temp <- a1 %>%
 temp %>% 
   filter(str_detect(note, "preparation")) %>% 
   filter(year == "2026") %>%
+  arrange(desc(num)) %>%
   pull(out)
 
 ```
@@ -288,6 +279,7 @@ temp %>%
 temp %>% 
   filter(str_detect(note, "review")) %>% 
   filter(year == "2026") %>%
+  arrange(desc(num)) %>%
   pull(out)
 
 ```
@@ -299,6 +291,7 @@ temp %>%
 temp %>% 
   filter(!str_detect(note, "preparation|review")) %>% 
   filter(year == "2026") %>%
+  arrange(desc(num)) %>%
   pull(out)
 
 
@@ -314,6 +307,7 @@ temp %>%
 ```{r}
 temp %>% 
   filter(year == "2025") %>%
+  arrange(desc(num)) %>%
   pull(out)
 
 ```
@@ -325,6 +319,7 @@ temp %>%
 ```{r}
 temp %>% 
   filter(year == "2024") %>%
+  arrange(desc(num)) %>%
   pull(out)
 
 ```
@@ -334,6 +329,7 @@ temp %>%
 ```{r}
 temp %>% 
   filter(year == "2023") %>%
+  arrange(desc(num)) %>%
   pull(out)
 
 ```
@@ -344,6 +340,7 @@ temp %>%
 ```{r}
 temp %>% 
   filter(year == "2022") %>%
+  arrange(desc(num)) %>%
   pull(out)
 
 ```
@@ -354,6 +351,7 @@ temp %>%
 ```{r}
 temp %>% 
   filter(year == "2021") %>%
+  arrange(desc(num)) %>%
   pull(out)
 
 ```
@@ -363,6 +361,7 @@ temp %>%
 ```{r}
 temp %>% 
   filter(year %in% c("2020","2019","2018","2017","2016")) %>%
+  arrange(desc(num)) %>%
   pull(out)
 
 ```
