@@ -1,5 +1,5 @@
 mk_pub_new <- function(data, exclude = NULL) {
-  
+  # data = a1
   indentation <- ""
 #     "\\hangindent=2em
 # \\hangafter=1"
@@ -47,13 +47,13 @@ mk_pub_new <- function(data, exclude = NULL) {
                            TRUE ~ .x)) %>% 
     mutate(
       out = 
-        glue::glue("<<num>>. <<author>> (<<year>>). <<title>>. <<journal>><<volum>><<number>><<doi>><<note>>",
+        glue::glue("<<author>> (<<year>>). <<title>>. <<journal>><<volum>><<number>><<doi>><<note>>",
                    .open = "<<", .close = ">>")
     )
   
   # out <- data %>% pull(out)
   # out <- paste(out, collapse = "\n\n")
-  data
+  data %>% mutate(num = factor(num, 1:200))
   # cat(out)
 }
 

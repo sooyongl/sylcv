@@ -253,7 +253,7 @@ temp <- a1 %>%
    mk_pub_new() %>%
   mutate(
     number = row_number(),
-    out = two_entry('-', out, c(0.01, 0.99))
+    out = two_entry(num, out, c(0.01, 0.99))
   )
 
 
