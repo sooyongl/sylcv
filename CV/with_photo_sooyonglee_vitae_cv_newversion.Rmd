@@ -102,34 +102,22 @@ three_entry <- function(a1, a2, a3) {
 ```
 
 <!-- My info -->
-```{r}
-maketitle <- function(name, position, institute, contact) {
-  
-  name <- str_replace_all(name, fixed("&"), "\\&")
-  position <- str_replace_all(position, fixed("&"), "\\&")
-  institute <- str_replace_all(institute, fixed("&"), "\\&")
-  
-  glue("\\centering \\textbf{\\Large <<name>>}
-
-\\centering <<position>>
-
-\\centering <<institute>>
-
-\\centering <<contact>>", .open = "<<", .close = ">>")
-  
-}
-
-maketitle("Sooyong Lee, Ph.D.", 
-          "Psychometrician", 
-          "WIDA\n\nThe University of Wisconsin-Madison",
-          "\\faEnvelope: sooyongl09@gmail.com | \\orcid{0000-0002-7964-4508}: 0000-0002-7964-4508 | \\aiGoogleScholar\\href{https://scholar.google.com/citations?user=XIoJogsAAAAJ&hl=ko&oi=sra}{Google Scholar} | \\faGithub: sooyongl/")
-
-
-
-```
-
-
-<!-- \includegraphics[width=3cm,height=4cm,keepaspectratio]{../img/selfi.jpg} -->
+\noindent
+\begin{minipage}[c]{0.30\textwidth}
+    \includegraphics[width=\linewidth,height=50cm,keepaspectratio]{../img/selfi.jpg}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.75\textwidth}
+    \centering
+    \textbf{\Large Sooyong Lee, Ph.D.} \\[2pt]
+    Psychometrician \\[2pt]
+    WIDA \\ 
+    The University of Wisconsin--Madison \\[4pt]
+    \faEnvelope: sooyongl09@gmail.com \;|\;
+    \orcid{0000-0002-7964-4508}: 0000-0002-7964-4508 \;|\;
+    \aiGoogleScholar\href{https://scholar.google.com/citations?user=XIoJogsAAAAJ&hl=ko&oi=sra}{Google Scholar} \;|\;
+    \faGithub: sooyongl/
+\end{minipage}
 
 `r header1("PROFESSIONAL SUMMARY")`
 
