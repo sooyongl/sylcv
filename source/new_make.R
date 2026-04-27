@@ -64,7 +64,7 @@ mk_presen_new <- function(data, exclude = NULL) {
     "\\hangindent=2em
 \\hangafter=1"
   
-  data <- data %>% arrange(year, author) # %>% select(all_of(selection))
+  data <- data # %>% arrange(year, author) # %>% select(all_of(selection))
   
   if(!is.null(exclude)) {
     
@@ -76,7 +76,9 @@ mk_presen_new <- function(data, exclude = NULL) {
   
   data <- 
     data %>% 
-    mutate(author = str_replace(author, "Sooyong Lee", fixed("\\\\textbf{Sooyong Lee}")),
+    mutate(
+      number = paste0('\\textbf{', number, "}"),
+      author = str_replace(author, "Sooyong Lee", fixed("\\\\textbf{Sooyong Lee}")),
            title = paste0("\\emph{",title,"}"),
            conference = paste0(conference,","),
            location = paste0(" ",location,".")
@@ -91,10 +93,12 @@ mk_presen_new <- function(data, exclude = NULL) {
         glue::glue("<<author>> (<<year>>). <<title>>. <<conference>><<location>>",  .open = "<<", .close = ">>")
     )
   
-  out <- data %>% pull(out)
-  out <- paste(out, collapse = "\n\n")
+  out <- data #%>% pull(out)
+  # out <- paste(out, collapse = "\n\n")
+  # cat(out)
   
-  cat(out)
+  out
+  
 }
 
 

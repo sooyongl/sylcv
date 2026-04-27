@@ -1,9 +1,19 @@
 ---
-output: 
+output:
   pdf_document:
     latex_engine: xelatex
     includes:
       in_header: preamble.tex
+# output: 
+#   latex_document:
+#     latex_engine: xelatex
+#     includes:
+#       in_header: preamble.tex
+# format:
+#   pdf:
+#     pdf-engine: xelatex
+#     include-in-header: preamble.tex
+#     keep-tex: true
 fontsize: 10pt
 ---
 
@@ -378,15 +388,25 @@ temp %>%
 ```{r results = 'asis'}
 readGoogleSheets("Presentation") %>%
   filter(type == "presentation") %>% 
-  dplyr::arrange(desc(year)) %>% 
+  dplyr::arrange(desc(year)) %>%
   mutate(number = row_number(desc(row_number()))) %>% 
+  mk_presen_new() %>% 
   mutate(
-    year = as.character(year),
-    year = str_extract(year, "^\\d{4}-\\d{2}"),
-    # number = row_number(),
-    out = one_entry(glue("{number}. {author} ({year}). {title}. {conference}, {location}."))
+    out = as.character(out),
+    
+    out = two_entry(number, out, c(0.01, 0.99))
   ) %>% 
   pull(out)
+   
+  # dplyr::arrange(desc(year)) %>% 
+  # mutate(number = row_number(desc(row_number()))) %>% 
+  # mutate(
+  #   year = as.character(year),
+  #   year = str_extract(year, "^\\d{4}-\\d{2}"),
+  #   # number = row_number(),
+  #   out = one_entry(glue("{number}. {author} ({year}). {title}. {conference}, {location}."))
+  # ) %>% 
+  # pull(out)
 ```
 
 \begin{flushleft} \textbf{Posters} \end{flushleft}
@@ -395,15 +415,24 @@ readGoogleSheets("Presentation") %>%
 readGoogleSheets("Presentation") %>%
   filter(type == "poster") %>% 
   dplyr::arrange(desc(year)) %>%
-  mutate(number = row_number(desc(row_number()))) %>%  
+  mutate(number = row_number(desc(row_number()))) %>% 
+  mk_presen_new() %>% 
   mutate(
-    year = as.character(year),
+    out = as.character(out),
     
-    year = str_extract(year, "^\\d{4}-\\d{2}"),
-    # number = row_number(),
-    out = one_entry(glue("{number}. {author} ({year}). {title}. {conference}, {location}."))
+    out = two_entry(number, out, c(0.01, 0.99))
   ) %>% 
   pull(out)
+
+  # mutate(number = row_number(desc(row_number()))) %>%  
+  # mutate(
+  #   year = as.character(year),
+  #   \textbf{1}
+  #   year = str_extract(year, "^\\d{4}-\\d{2}"),
+  #   # number = row_number(),
+  #   out = one_entry(glue("{number}. {author} ({year}). {title}. {conference}, {location}."))
+  # ) %>% 
+  # pull(out)
 ```
 
 `r header1("RESEARCH")`
