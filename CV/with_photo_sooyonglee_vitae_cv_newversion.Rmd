@@ -4,6 +4,7 @@ output:
     latex_engine: xelatex
     includes:
       in_header: preamble.tex
+# mainfont: NanumGothic
 # output: 
 #   latex_document:
 #     latex_engine: xelatex
@@ -122,7 +123,16 @@ three_entry <- function(a1, a2, a3) {
 `r header1("PROFESSIONAL SUMMARY")`
 
 \begin{flushleft}
-As a psychometrician, I specialize in applying contemporary statistical theories and techniques to my work. My research interests center around developing and utilizing statistical models, including structural equation modeling (SEM), multilevel modeling (MLM), item response theory (IRT), and mixture modeling. In my recent work, I have placed particular emphasis on Bayesian estimation as a means of modeling the relationships between variables.
+저는 교육심리 및 심리측정 방법론을 전공한 연구자로, 복잡한 행동·교육 데이터에서 의미 있는 인과 구조를 밝히고, 그 결과를 실제 교육 현장에 환원하는 데 관심을 두고 있습니다.
+
+연구의 핵심은 측정 모형과 인과 모형의 통합입니다. 대표적으로, 교육 프로그램의 인과 효과를 정밀하게 추정하기 위한 FLPS(Fully Latent Principal Stratification) 모형을 제안하고, 대규모 시뮬레이션 검증과 R 패키지 구현을 통해 연구자들이 실제로 활용할 수 있는 오픈소스 도구로 발전시켰습니다. 이 외에도 차별문항기능(DIF) 탐지 알고리즘, 생존 사건을 포함한 종단 매개모형, 베이지안 다층 상호작용 추정 등 심리 및 행동과학 데이터를 위한 방법론적 연구를 꾸준히 이어오고 있습니다.
+
+현재는 WIDA에서 K-12 학생을 대상으로 한 대규모 언어 평가 데이터를 기반으로 척도화·타당화·측정 동일성 분석을 수행하고 있습니다. 최근에는 AI 기반 자동 채점, 기계학습 기반 부정행위 탐지, 그리고 AI가 생성한 응답의 젠더 편향 탐지 연구 등 데이터과학과 심리측정이 교차하는 새로운 연구 영역을 개척하고 있습니다. 이러한 연구들은 방법론적 엄밀성을 유지하면서도 교육 공정성과 평가 신뢰성이라는 사회적 문제에 직접 기여한다는 점에서 의미가 있습니다.
+
+나아가 성장 마인드셋과 학업 감정의 종단적 패턴, 청소년의 수학 자기효능감 변화 등 학생 발달과 교육 효과에 관한 연구를 통해, 방법론이 실제 교육 정책과 현장 실천에 연결될 수 있음을 보여주고자 합니다. 미국에서의 학문적 훈련과 대규모 평가 실무 경험을 바탕으로, 한국의 교육학 및 심리학 연구가 세계적 수준과 호흡을 맞추고 교육 현장의 실질적 변화에 기여하는 데 함께하고 싶습니다.
+
+
+
 \end{flushleft}
 
 `r header1("CONTACTS OF REFERENCES")`
@@ -248,15 +258,59 @@ a1 <- readGoogleSheets("Publication") %>%
   filter(type == "article")
 # 
 
+two_entry_paper <- function(a1, a2, Korean, width = c(0.2, 0.8)) {
+  
+  a1 <- str_replace_all(a1, fixed("&"), "\\&")
+  a2 <- str_replace_all(a2, fixed("&"), "\\&")
+  
+  if(is.na(Korean) | str_detect(Korean, "^\\s+$") | Korean == "") {
+    
+    glue("
+\\begin{tabular}{p{<<width[1]>>\\textwidth} p{<<width[2]>>\\textwidth} }
+
+  \\textbf{<<a1>>} & <<a2>>
+
+\\end{tabular}
+\\smallskip
+
+", 
+.open = "<<", .close = ">>")
+    
+  } else {
+    
+    glue("
+\\begin{tabular}{p{<<width[1]>>\\textwidth} p{<<width[2]>>\\textwidth} }
+
+  \\textbf{<<a1>>} & <<a2>> \\\\\\
+  
+  &
+\\small\\color{darkgray}
+<<Korean>>
+
+
+\\end{tabular}
+\\smallskip
+
+", 
+.open = "<<", .close = ">>")
+    
+  }
+  
+   
+  
+}
+
+
 temp <- a1 %>%
   # filter(year == "2023") %>%
   # mk_pub_new(exclude = "doi") %>%
    mk_pub_new() %>%
+  rowwise() %>%
   mutate(
     number = row_number(),
-    out = two_entry(num, out, c(0.01, 0.99))
-  )
-
+    out = two_entry_paper(num, out, Korean_desc, c(0.01, 0.99))
+  ) %>%
+  ungroup()
 
 
 ```
@@ -429,11 +483,12 @@ readGoogleSheets("Presentation") %>%
 `r header1("RESEARCH")`
 
 ```{r results = 'asis'}
-research_entry <- function(a1, a2, a3, a4) {
+research_entry <- function(a1, a2, a3, a4, note) {
   glue("
-\\begin{tabular}{p{0.2\\textwidth}@{\\hspace{-10pt}}@{}p{0.6\\textwidth} p{0.2\\textwidth} }
+\\begin{tabular}{p{0.22\\textwidth}@{\\hspace{-10pt}}@{}p{0.6\\textwidth} p{0.2\\textwidth} }
 
   <<a1>> & <<a2>> & <<a3>> \\\\\\
+         &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<note>>}   \\\\\\
          &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<a4>>}   \\\\\\
 
 \\end{tabular}
@@ -445,7 +500,7 @@ research_entry <- function(a1, a2, a3, a4) {
 readGoogleSheets("Experience") %>%
   dplyr::arrange(desc(Year)) %>%
   mutate(
-    out = research_entry(Position, Name, Year, Desc)
+    out = research_entry(Position, Name, Year, Korean_desc, note)
   ) %>% pull(out)
 
 ```
@@ -468,6 +523,7 @@ teaching_entry <- function(Year, Position, Name, note, Desc) {
 
   <<Name>> & <<Year>>  \\\\\\
   <<note>> &   \\\\\\
+  <<Desc>> &   \\\\\\
 
 \\end{tabular}
 
@@ -478,12 +534,46 @@ teaching_entry <- function(Year, Position, Name, note, Desc) {
 
 readGoogleSheets("Teaching") %>%
     dplyr::arrange(desc(Year)) %>%
+  filter(type == "formal") %>% 
   mutate(
     Desc = "Univeristy of Texas at Austin",
-    out = teaching_entry(Year, Position, Name, note, Desc)
+    out = teaching_entry(Year, Position, Name, note, Korean_desc)
   ) %>% 
   pull(out)
 ```
+
+`r header2("Informal Special Talks")`
+
+```{r results = 'asis'}
+talk_entry <- function(Year, Position, Name, note, Desc, link) {
+
+
+  glue("
+\\begin{tabular}{p{0.8\\textwidth} p{0.2\\textwidth}  }
+
+  <<Name>> & <<Year>>  \\\\\\
+  \\href{<<link>>}{Link to Materials} &   \\\\\\
+  <<Desc>> &   \\\\\\
+
+\\end{tabular}
+
+",
+.open = "<<", .close = ">>")
+}
+
+
+readGoogleSheets("Teaching") %>%
+    dplyr::arrange(desc(Year)) %>%
+  filter(type == "informal") %>%
+  mutate(
+    # Desc = "Univeristy of Texas at Austin",
+    out = talk_entry(Year, Position, Name, note, Korean_desc, link)
+  ) %>%
+  pull(out)
+```
+
+
+
 
 `r header1("PROGRAMS")`
 

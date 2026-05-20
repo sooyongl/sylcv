@@ -11,7 +11,7 @@ mk_pub_new <- function(data, exclude = NULL) {
       author0 = author,
       note = factor(note, c(NA,"In print", "In print (Accepted)", "Under review", "In preparation"))
     ) %>% 
-    arrange(year, note, journal, desc(author)) %>% 
+    arrange(year, note, what, journal, desc(author)) %>% 
     
     # %>% select(all_of(selection))
       mutate(

@@ -260,14 +260,59 @@ a1 <- readGoogleSheets("Publication") %>%
   filter(type == "article")
 # 
 
+two_entry_paper <- function(a1, a2, Korean, width = c(0.2, 0.8)) {
+  
+  a1 <- str_replace_all(a1, fixed("&"), "\\&")
+  a2 <- str_replace_all(a2, fixed("&"), "\\&")
+  
+  if(is.na(Korean) | str_detect(Korean, "^\\s+$") | Korean == "") {
+    
+    glue("
+\\begin{tabular}{p{<<width[1]>>\\textwidth} p{<<width[2]>>\\textwidth} }
+
+  \\textbf{<<a1>>} & <<a2>>
+
+\\end{tabular}
+\\smallskip
+
+", 
+.open = "<<", .close = ">>")
+    
+  } else {
+    
+    glue("
+\\begin{tabular}{p{<<width[1]>>\\textwidth} p{<<width[2]>>\\textwidth} }
+
+  \\textbf{<<a1>>} & <<a2>> \\\\\\
+  
+  &
+\\small\\color{darkgray}
+<<Korean>>
+
+
+\\end{tabular}
+\\smallskip
+
+", 
+.open = "<<", .close = ">>")
+    
+  }
+  
+   
+  
+}
+
+
 temp <- a1 %>%
   # filter(year == "2023") %>%
   # mk_pub_new(exclude = "doi") %>%
    mk_pub_new() %>%
+  rowwise() %>%
   mutate(
     number = row_number(),
-    out = two_entry(num, out, c(0.01, 0.99))
-  )
+    out = two_entry_paper(num, out, Desc, c(0.01, 0.99))
+  ) %>%
+  ungroup()
 
 
 
@@ -441,11 +486,12 @@ readGoogleSheets("Presentation") %>%
 `r header1("RESEARCH")`
 
 ```{r results = 'asis'}
-research_entry <- function(a1, a2, a3, a4) {
+research_entry <- function(a1, a2, a3, a4, note) {
   glue("
-\\begin{tabular}{p{0.2\\textwidth}@{\\hspace{-10pt}}@{}p{0.6\\textwidth} p{0.2\\textwidth} }
+\\begin{tabular}{p{0.22\\textwidth}@{\\hspace{-10pt}}@{}p{0.6\\textwidth} p{0.2\\textwidth} }
 
   <<a1>> & <<a2>> & <<a3>> \\\\\\
+         &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<note>>}   \\\\\\
          &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<a4>>}   \\\\\\
 
 \\end{tabular}
@@ -457,7 +503,7 @@ research_entry <- function(a1, a2, a3, a4) {
 readGoogleSheets("Experience") %>%
   dplyr::arrange(desc(Year)) %>%
   mutate(
-    out = research_entry(Position, Name, Year, Desc)
+    out = research_entry(Position, Name, Year, Desc, note)
   ) %>% pull(out)
 
 ```
@@ -480,6 +526,7 @@ teaching_entry <- function(Year, Position, Name, note, Desc) {
 
   <<Name>> & <<Year>>  \\\\\\
   <<note>> &   \\\\\\
+  <<Desc>> &   \\\\\\
 
 \\end{tabular}
 
@@ -490,10 +537,43 @@ teaching_entry <- function(Year, Position, Name, note, Desc) {
 
 readGoogleSheets("Teaching") %>%
     dplyr::arrange(desc(Year)) %>%
+  filter(type == "formal") %>% 
   mutate(
     Desc = "Univeristy of Texas at Austin",
     out = teaching_entry(Year, Position, Name, note, Desc)
   ) %>% 
+  pull(out)
+```
+
+`r header2("Informal Special Talks")`
+
+```{r results = 'asis'}
+talk_entry <- function(Year, Position, Name, note, Desc, link) {
+
+
+  glue("
+\\begin{tabular}{p{0.8\\textwidth} p{0.2\\textwidth}  }
+
+  <<Name>> & <<Year>>  \\\\\\
+  \\href{<<link>>}{Link to Materials} &   \\\\\\
+  <<Desc>> &   \\\\\\
+
+\\end{tabular}
+
+",
+.open = "<<", .close = ">>")
+}
+
+
+
+
+readGoogleSheets("Teaching") %>%
+    dplyr::arrange(desc(Year)) %>%
+  filter(type == "informal") %>%
+  mutate(
+    # Desc = "Univeristy of Texas at Austin",
+    out = talk_entry(Year, Position, Name, note, Desc, link)
+  ) %>%
   pull(out)
 ```
 

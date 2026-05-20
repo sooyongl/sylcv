@@ -1,0 +1,201 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+    includes:
+      in_header: preamble.tex
+# header-includes:
+#   - \usepackage{fontspec}
+#   - \usepackage{xeCJK}
+#   - \usepackage{fontawesome5}
+#   - \usepackage{academicons}
+#   - \setmainfont{Arial}
+#   - \setCJKmainfont{Malgun Gothic}
+#   - \usepackage{hyperref}
+#   - \newcommand{\orcid}[1]{\href{https://orcid.org/#1}{\textcolor[HTML]{A6CE39}{\aiOrcid}}}
+#   - \definecolor{lightergrey}{gray}{0.9}
+
+# output: 
+#   latex_document:
+#     latex_engine: xelatex
+#     includes:
+#       in_header: preamble.tex
+# format:
+#   pdf:
+#     pdf-engine: xelatex
+#     include-in-header: preamble.tex
+#     keep-tex: true
+fontsize: 10pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', echo = FALSE, warning = FALSE, message = FALSE)
+
+library(glue)
+library(tidyverse)
+library(readxl)
+
+# for(R in fs::dir_ls("source/new_make.R")) {source(R)}
+source("../source/new_make.R")
+source("../source/read_GoogleSheets.R")
+
+# Latex code generators functions
+header1 <- function(title) {
+  title <- str_replace_all(title, fixed("&"), "\\&")
+  
+  glue("
+\\noindent\\colorbox{lightergrey}{%
+    \\parbox{\\dimexpr\\textwidth-2\\fboxsep\\relax}{%
+        \\centering
+        \\fontspec{Arial} \\textbf{\\Large <<title>>}%
+    }%
+}\\medskip", .open = "<<", .close = ">>")
+}
+
+header2 <- function(title) {
+  title <- str_replace_all(title, fixed("&"), "\\&")
+  
+  glue("
+\\begin{flushleft}
+  \\fontspec{Arial}
+  \\textbf{\\large <<title>>} 
+\\end{flushleft} ", 
+.open = "<<", .close = ">>")
+}
+
+
+one_entry <- function(a1) {
+  
+  a1 <- str_replace_all(a1, fixed("&"), "\\&")
+  a1 <- str_replace(a1, fixed("Sooyong Lee"), '\\textbf{Sooyong Lee}')
+  
+  glue("<<a1>>
+       
+       ", 
+       .open = "<<", .close = ">>")
+}
+
+
+two_entry <- function(a1, a2, width = c(0.2, 0.8)) {
+  
+  a1 <- str_replace_all(a1, fixed("&"), "\\&")
+  a2 <- str_replace_all(a2, fixed("&"), "\\&")
+  
+  glue("
+\\begin{tabular}{p{<<width[1]>>\\textwidth} p{<<width[2]>>\\textwidth} }
+
+  \\textbf{<<a1>>} & <<a2>>
+
+\\end{tabular}
+\\smallskip
+
+", 
+.open = "<<", .close = ">>")
+}
+
+three_entry <- function(a1, a2, a3) {
+  
+  a1 <- str_replace_all(a1, fixed("&"), "\\&")
+  a2 <- str_replace_all(a2, fixed("&"), "\\&")
+  
+  glue("
+\\begin{tabular}{p{0.2\\textwidth} p{0.6\\textwidth} p{0.2\\textwidth} }
+
+  \\textbf{<<a1>>} & <<a2>> & <<a3>> \\
+
+\\end{tabular}
+
+", 
+.open = "<<", .close = ">>")
+}
+
+```
+
+<!-- My info -->
+```{r}
+maketitle <- function(name, position, institute, contact) {
+  
+  name <- str_replace_all(name, fixed("&"), "\\&")
+  position <- str_replace_all(position, fixed("&"), "\\&")
+  institute <- str_replace_all(institute, fixed("&"), "\\&")
+  
+  glue("\\centering \\textbf{\\Large <<name>>}
+
+\\centering <<position>>
+
+\\centering <<institute>>
+
+\\centering <<contact>>", .open = "<<", .close = ">>")
+  
+}
+
+maketitle("Sooyong Lee, Ph.D.",
+          "Psychometrician",
+          "WIDA\n\nThe University of Wisconsin-Madison",
+          "\\faEnvelope: sooyongl09@gmail.com | \\orcid{0000-0002-7964-4508}: 0000-0002-7964-4508 | \\aiGoogleScholar\\href{https://scholar.google.com/citations?user=XIoJogsAAAAJ&hl=ko&oi=sra}{Google Scholar} | \\faGithub: sooyongl/")
+
+
+
+```
+
+
+<!-- \includegraphics[width=3cm,height=4cm,keepaspectratio]{../img/selfi.jpg} -->
+
+`r header1("PROFESSIONAL SUMMARY")`
+
+\begin{flushleft}
+As a psychometrician, I specialize in applying contemporary statistical theories and techniques to my work. My research interests center around developing and utilizing statistical models, including structural equation modeling (SEM), multilevel modeling (MLM), item response theory (IRT), and mixture modeling. In my recent work, I have placed particular emphasis on Bayesian estimation as a means of modeling the relationships between variables.
+\end{flushleft}
+
+`r header1("CONTACTS OF REFERENCES")`
+
+\begin{tabular}{p{0.4\textwidth}@{\hspace{-10pt}}@{}p{0.4\textwidth}@{\hspace{-10pt}}@{}p{0.3\textwidth} }
+
+1.	\textbf{Tiffany A. Whittaker}
+
+Professor
+
+The University of Texas at Austin
+
+Department of Educational Psychology
+
+Quantitative Methods
+
+\textbf{Email}: t.whittaker@austin.utexas.edu
+
+\textbf{Phone}: 512-471-2749     &
+
+2.	\textbf{Seung W. Choi}
+
+Professor
+
+The University of Texas at Austin
+
+Department of Educational Psychology
+
+Quantitative Methods
+
+\textbf{Email}: schoi@austin.utexas.edu
+
+\textbf{Phone}: 512-471-2751 &
+
+3.	\textbf{Cory L. Cobb}
+
+Assistant Professor
+
+Texas A\&M University
+
+School of Public Health
+
+Department of Health Behavior
+
+
+\textbf{Email}: cory.cobb@tamu.edu
+
+\textbf{Phone}: 501-749-3382
+
+\end{tabular}
+
+
+한글이 적용되는지
