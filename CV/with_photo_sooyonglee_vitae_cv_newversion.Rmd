@@ -314,7 +314,7 @@ temp <- a1 %>%
 ```
 
 
-\begin{flushleft} \textbf{In Preparation (05/2026)} \end{flushleft}
+\begin{flushleft} \textbf{In Preparation (08/2026)} \end{flushleft}
 
 ```{r}
 temp %>% 
@@ -326,7 +326,7 @@ temp %>%
 ```
 
 
-\begin{flushleft} \textbf{Under Review (05/2026)} \end{flushleft}
+\begin{flushleft} \textbf{Under Review (08/2026)} \end{flushleft}
 
 ```{r}
 temp %>% 
@@ -543,14 +543,14 @@ readGoogleSheets("Teaching") %>%
 `r header2("Invited Workshop")`
 
 ```{r results = 'asis'}
-talk_entry <- function(Year, Position, Name, note, Desc, link) {
+talk_entry <- function(Year, Position, Name, note, Desc, link, link0) {
 
 
   glue("
 \\begin{tabular}{p{0.8\\textwidth} p{0.2\\textwidth}  }
 
   <<Name>> & <<Year>>  \\\\\\
-  \\href{<<link>>}{Link to Materials} &   \\\\\\
+  \\href{<<link>>}{<<link0>>} &   \\\\\\
   <<Desc>> &   \\\\\\
 
 \\end{tabular}
@@ -565,7 +565,7 @@ readGoogleSheets("Teaching") %>%
   filter(type == "informal") %>%
   mutate(
     # Desc = "Univeristy of Texas at Austin",
-    out = talk_entry(Year, Position, Name, note, Korean_desc, link)
+    out = talk_entry(Year, Position, Name, note, Korean_desc, link, link0)
   ) %>%
   pull(out)
 ```
