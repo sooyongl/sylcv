@@ -103,84 +103,110 @@ three_entry <- function(a1, a2, a3) {
 ```
 
 <!-- My info -->
-\noindent
-\begin{minipage}[c]{0.30\textwidth}
-    \includegraphics[width=\linewidth,height=50cm,keepaspectratio]{../img/selfi.jpg}
-\end{minipage}
-\hfill
-\begin{minipage}[c]{0.75\textwidth}
-    \centering
-    \textbf{\Large Sooyong Lee, Ph.D.} \\[2pt]
-    Psychometrician \\[2pt]
-    WIDA \\ 
-    The University of Wisconsin--Madison \\[4pt]
-    \faEnvelope: sooyongl09@gmail.com \;|\;
-    \orcid{0000-0002-7964-4508}: 0000-0002-7964-4508 \;|\;
-    \aiGoogleScholar\href{https://scholar.google.com/citations?user=XIoJogsAAAAJ&hl=ko&oi=sra}{Google Scholar} \;|\;
-    \faGithub: sooyongl/
-\end{minipage}
+<!-- \noindent -->
+<!-- \begin{minipage}[c]{0.30\textwidth} -->
+<!--     \includegraphics[width=\linewidth,height=50cm,keepaspectratio]{../img/selfi.jpg} -->
+<!-- \end{minipage} -->
+<!-- \hfill -->
+<!-- \begin{minipage}[c]{0.75\textwidth} -->
+<!--     \centering -->
+<!--     \textbf{\Large Sooyong Lee, Ph.D.} \\[2pt] -->
+<!--     Psychometrician \\[2pt] -->
+<!--     WIDA \\  -->
+<!--     The University of Wisconsin--Madison \\[4pt] -->
+<!--     \faEnvelope: sooyongl09@gmail.com \;|\; -->
+<!--     \orcid{0000-0002-7964-4508}: 0000-0002-7964-4508 \;|\; -->
+<!--     \aiGoogleScholar\href{https://scholar.google.com/citations?user=XIoJogsAAAAJ&hl=ko&oi=sra}{Google Scholar} \;|\; -->
+<!--     \faGithub: sooyongl/ -->
+<!-- \end{minipage} -->
+
+```{r}
+maketitle <- function(name, position, institute, contact) {
+  
+  name <- str_replace_all(name, fixed("&"), "\\&")
+  position <- str_replace_all(position, fixed("&"), "\\&")
+  institute <- str_replace_all(institute, fixed("&"), "\\&")
+  
+  glue("\\centering \\textbf{\\Large <<name>>}
+
+\\centering <<position>>
+
+\\centering <<institute>>
+
+\\centering <<contact>>", .open = "<<", .close = ">>")
+  
+}
+
+maketitle("Sooyong Lee, Ph.D.", 
+          "Psychometrician", 
+          "WIDA\n\nThe University of Wisconsin-Madison",
+          "\\faEnvelope: sooyongl09@gmail.com | \\orcid{0000-0002-7964-4508}: 0000-0002-7964-4508 | \\aiGoogleScholar\\href{https://scholar.google.com/citations?user=XIoJogsAAAAJ&hl=ko&oi=sra}{Google Scholar} | \\faGithub: sooyongl/")
+
+
+
+```
 
 `r header1("PROFESSIONAL SUMMARY")`
 
 \begin{flushleft}
-저는 교육통계 및 측정·평가 방법론을 연구하며, 대규모 교육 데이터를 최신 연구방법으로 분석하고 그 결과가 교육 현장과 정책에 실질적으로 연결되는 데 관심을 두고 있습니다.
 
-현재는 WIDA에서 K-12 학생을 대상으로 한 대규모 언어 평가 데이터를 기반으로 척도화·타당화·측정 동일성 분석을 수행하고 있습니다. 최근에는 AI 기반 자동 채점, 기계학습 기반 부정행위 탐지, AI 생성 응답의 젠더 편향 탐지 등 데이터과학과 교육 측정이 교차하는 새로운 연구 영역으로 관심을 넓히고 있습니다. 이러한 연구들은 방법론적 엄밀성을 유지하면서도 교육 공정성과 평가 신뢰성이라는 사회적 문제에 직접 기여한다는 점에서 의미가 있습니다.
+저는 교육 데이터를 분석하기 위한 통계모형과 측정모형을 개발하고, 이를 실제 교육 문제에 적용하는 연구자입니다. 학생의 발달과 집단 간 차이, 평가 결과에 영향을 미치는 요인을 보다 정확하게 이해할 수 있도록 새로운 분석 방법을 연구하고 있습니다.
 
-아울러 성장 마인드셋과 학업 감정의 종단적 패턴, 청소년의 수학 자기효능감 변화 등 학생 발달과 교육 효과에 관한 연구를 통해, 방법론이 교육 정책과 현장 실천으로 이어질 수 있음을 보여주고자 합니다. 미국에서 쌓은 학문적 훈련과 대규모 평가 실무 경험을 바탕으로, 한국 교육학 및 AI를 비롯한 사회과학 관련 분야에서 세계적 수준의 연구자들과 협력·공동 연구를 이어가며 교육 현장의 실질적 변화에 기여하고 싶습니다.
+현재 University of Wisconsin-Madison 산하에 있는 언어 평가 기관인 WIDA에서는 K–12 학생의 대규모 언어 평가 데이터를 바탕으로 척도화, 타당화, 측정 동일성 분석을 수행하고 있습니다. 또한 통계모형을 활용해 평가 결과를 예측하고 해석하는 업무를 진행하고 있습니다. 앞으로는 이러한 방법론적 전문성을 AI 기반 자동 채점과 AI 생성 응답의 편향 등 새로운 교육 데이터의 분석으로 확장하고자 합니다.
 
+성장 마인드셋, 학업 감정, 수학 자기효능감의 변화 등 학생 발달에 관한 종단 연구도 수행해 왔습니다. 통계모형과 측정모형의 개발을 실제 교육 연구 및 대규모 평가 경험과 연결하고, 다양한 분야의 연구자들과 협력해 교육 현장과 정책에 활용할 수 있는 근거를 만들고자 합니다.
 
 
 \end{flushleft}
 
-`r header1("CONTACTS OF REFERENCES")`
+<!-- `r header1("CONTACTS OF REFERENCES")` -->
 
-\begin{tabular}{p{0.4\textwidth}@{\hspace{-10pt}}@{}p{0.4\textwidth}@{\hspace{-10pt}}@{}p{0.3\textwidth} }
+<!-- \begin{tabular}{p{0.4\textwidth}@{\hspace{-10pt}}@{}p{0.4\textwidth}@{\hspace{-10pt}}@{}p{0.3\textwidth} } -->
 
-1.	\textbf{Tiffany A. Whittaker}
+<!-- 1.	\textbf{Tiffany A. Whittaker} -->
 
-Professor
+<!-- Professor -->
 
-The University of Texas at Austin
+<!-- The University of Texas at Austin -->
 
-Department of Educational Psychology
+<!-- Department of Educational Psychology -->
 
-Quantitative Methods
+<!-- Quantitative Methods -->
 
-\textbf{Email}: t.whittaker@austin.utexas.edu
+<!-- \textbf{Email}: t.whittaker@austin.utexas.edu -->
 
-\textbf{Phone}: 512-471-2749     &
+<!-- \textbf{Phone}: 512-471-2749     & -->
 
-2.	\textbf{Seung W. Choi}
+<!-- 2.	\textbf{Seung W. Choi} -->
 
-Professor
+<!-- Professor -->
 
-The University of Texas at Austin
+<!-- The University of Texas at Austin -->
 
-Department of Educational Psychology
+<!-- Department of Educational Psychology -->
 
-Quantitative Methods
+<!-- Quantitative Methods -->
 
-\textbf{Email}: schoi@austin.utexas.edu
+<!-- \textbf{Email}: schoi@austin.utexas.edu -->
 
-\textbf{Phone}: 512-471-2751 &
+<!-- \textbf{Phone}: 512-471-2751 & -->
 
-3.	\textbf{Cory L. Cobb}
+<!-- 3.	\textbf{Cory L. Cobb} -->
 
-Assistant Professor
+<!-- Assistant Professor -->
 
-Texas A\&M University
+<!-- Texas A\&M University -->
 
-School of Public Health
+<!-- School of Public Health -->
 
-Department of Health Behavior
+<!-- Department of Health Behavior -->
 
 
-\textbf{Email}: cory.cobb@tamu.edu
+<!-- \textbf{Email}: cory.cobb@tamu.edu -->
 
-\textbf{Phone}: 501-749-3382
+<!-- \textbf{Phone}: 501-749-3382 -->
 
-\end{tabular}
+<!-- \end{tabular} -->
 
 
 <!-- My Education-->
@@ -481,25 +507,171 @@ readGoogleSheets("Presentation") %>%
 `r header1("RESEARCH")`
 
 ```{r results = 'asis'}
-research_entry <- function(a1, a2, a3, a4, note) {
-  glue("
-\\begin{tabular}{p{0.22\\textwidth}@{\\hspace{-10pt}}@{}p{0.6\\textwidth} p{0.2\\textwidth} }
+# research_entry <- function(a1, a2, a3, a4, note) {
+#   glue("
+# \\begin{tabular}{p{0.22\\textwidth}@{\\hspace{-10pt}}@{}p{0.6\\textwidth} p{0.2\\textwidth} }
+# 
+#   <<a1>> & <<a2>> & <<a3>> \\\\\\
+#          &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<note>>}   \\\\\\
+#          &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<a4>>}   \\\\\\
+# 
+# \\end{tabular}
+# 
+# ", 
+# .open = "<<", .close = ">>")
+# }
+# 
+# readGoogleSheets("Experience") %>%
+#   dplyr::arrange(desc(Year)) %>%
+#   mutate(
+#     out = research_entry(Position, Name, Year, Desc, note)
+#   ) %>% pull(out)
 
-  <<a1>> & <<a2>> & <<a3>> \\\\\\
-         &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<note>>}   \\\\\\
-         &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<a4>>}   \\\\\\
 
-\\end{tabular}
+# Excel의 일반 텍스트를 LaTeX에서 안전하게 사용할 수 있도록 변환
+escape_latex <- function(x) {
+  x <- as.character(x)
 
-", 
-.open = "<<", .close = ">>")
+  stringr::str_replace_all(
+    x,
+    "[\\\\{}$&#_%~^]",
+    function(ch) {
+      switch(
+        ch,
+        "\\" = "\\textbackslash{}",
+        "{"  = "\\{",
+        "}"  = "\\}",
+        "$"  = "\\$",
+        "&"  = "\\&",
+        "#"  = "\\#",
+        "_"  = "\\_",
+        "%"  = "\\%",
+        "~"  = "\\textasciitilde{}",
+        "^"  = "\\textasciicircum{}"
+      )
+    }
+  )
 }
 
-readGoogleSheets("Experience") %>%
-  dplyr::arrange(desc(Year)) %>%
-  mutate(
-    out = research_entry(Position, Name, Year, Korean_desc, note)
-  ) %>% pull(out)
+# 한 셀의 일반 문장과 불릿을 LaTeX 문단/목록으로 변환
+format_research_text <- function(x) { # x = a4
+  if (length(x) == 0 || is.na(x) || !nzchar(trimws(x))) {
+    return("")
+  }
+
+  x <- gsub("\r\n?", "\n", as.character(x))
+  lines <- strsplit(x, "\n", fixed = TRUE)[[1]]
+
+  # If a plain first line is followed by bullets, make it the first bullet
+if (
+  length(lines) > 1 &&
+  !grepl("^\\s*([•*]|-)\\s+", lines[1], perl = TRUE) &&
+  any(grepl("^\\s*([•*]|-)\\s+", lines[-1], perl = TRUE))
+) {
+  lines[1] <- paste0("• ",trimws(lines[1]))
+}
+  
+  output <- character()
+  in_list <- FALSE
+
+  for (line in lines) {
+    line <- trimws(line)
+
+    if (!nzchar(line)) next
+
+    is_bullet <- grepl("^([•*]|-)\\s+", line, perl = TRUE)
+
+    if (is_bullet) {
+      if (!in_list) {
+        output <- c(
+          output,
+          "\\begin{itemize}",
+          "\\setlength{\\topsep}{0pt}",
+          "\\setlength{\\itemsep}{0pt}",
+          "\\setlength{\\parsep}{0pt}",
+          "\\setlength{\\partopsep}{0pt}",
+          "\\setlength{\\parskip}{0pt}"
+        )
+        in_list <- TRUE
+      }
+
+      item <- sub("^([•*]|-)\\s+", "", line, perl = TRUE)
+      output <- c(output, paste0("\\item ", escape_latex(item)))
+
+    } else {
+      if (in_list) {
+        output <- c(output, "\\end{itemize}")
+        in_list <- FALSE
+      }
+
+      output <- c(
+        output,
+        paste0(#"\\noindent ", 
+               escape_latex(line), "\\par")
+      )
+    }
+  }
+
+  if (in_list) {
+    output <- c(output, "\\end{itemize}")
+  }
+
+  paste(output, collapse = "\n")
+}
+
+
+
+research_entry <- function(a1, a2, a3, a4) {
+  
+  
+  # a1=entries$Position[1]
+  # a2=entries$Name[1]
+  # a3=entries$Year[1]
+  # a4=entries$Desc[1]
+  
+  mapply(
+    FUN = function(a1, a2, a3, a4) {
+
+      # Older Korean_desc cells contain a paragraph without a bullet.
+      if (!is.na(a4) &&
+          nzchar(trimws(a4)) &&
+          !grepl("(?m)^\\s*[•*-]\\s+", a4, perl = TRUE)) {
+        a4 <- paste0("• ", a4)
+      }
+
+      heading <- paste0(
+        "\\begin{tabular}{",
+        "p{0.22\\textwidth}@{\\hspace{10pt}}@{}",
+        "p{0.6\\textwidth} p{0.2\\textwidth}",
+        "}\n",
+        "\\textbf{", escape_latex(a1), "} & ",
+        escape_latex(a2), " & ",
+        escape_latex(a3), " ",
+        strrep("\\", 2), "\n",
+        "\\end{tabular}\\par\\vspace{-10pt}\n"
+      )
+
+      paste0(
+        heading,
+        format_research_text(a4), "\n",
+        '\\vspace{-7pt}'
+      )
+    },
+    a1, a2, a3, a4,
+    USE.NAMES = FALSE
+  )
+}
+
+
+entries <- readGoogleSheets("Experience") %>%
+  dplyr::arrange(dplyr::desc(Year)) %>%
+  dplyr::mutate(
+    out = research_entry(Position, Name, Year, Korean_desc)
+  ) %>%
+  dplyr::pull(out)
+
+cat(entries, sep = "\n\n")
+
 
 ```
 
@@ -540,34 +712,52 @@ readGoogleSheets("Teaching") %>%
   pull(out)
 ```
 
-`r header2("Invited Workshop")`
+`r header2("Invited Special Talks")`
 
 ```{r results = 'asis'}
+
 talk_entry <- function(Year, Position, Name, note, Desc, link, link0) {
+  mapply(
+    FUN = function(Year, Position, Name, note, Desc, link, link0) {
+      name_tex  <- escape_latex(Name)
+      year_tex  <- escape_latex(Year)
+      desc_tex  <- escape_latex(Desc)
+      link0_tex <- escape_latex(link0)
 
+      glue::glue(
+        r"(
+\noindent
+\parbox[t]{0.78\linewidth}{<<name_tex>>}\hfill
+\parbox[t]{0.18\linewidth}{\raggedleft <<year_tex>>}\par
+\vspace{-10pt}
+\begin{itemize}
+\setlength{\topsep}{0pt}
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\item Link: \href{<<link>>}{\textcolor{blue}{<<link0_tex>>}}
+\item <<desc_tex>>
+\end{itemize}
 
-  glue("
-\\begin{tabular}{p{0.8\\textwidth} p{0.2\\textwidth}  }
-
-  <<Name>> & <<Year>>  \\\\\\
-  \\href{<<link>>}{<<link0>>} &   \\\\\\
-  <<Desc>> &   \\\\\\
-
-\\end{tabular}
-
-",
-.open = "<<", .close = ">>")
+\vspace{-20pt}
+)",
+        .open = "<<", .close = ">>"
+      )
+    },
+    Year, Position, Name, note, Desc, link, link0,
+    USE.NAMES = FALSE
+  )
 }
 
-
-readGoogleSheets("Teaching") %>%
-    dplyr::arrange(desc(Year)) %>%
-  filter(type == "informal") %>%
-  mutate(
-    # Desc = "Univeristy of Texas at Austin",
+entries <- readGoogleSheets("Teaching") %>%
+  dplyr::arrange(dplyr::desc(Year)) %>%
+  dplyr::filter(type == "informal") %>%
+  dplyr::mutate(
     out = talk_entry(Year, Position, Name, note, Korean_desc, link, link0)
   ) %>%
-  pull(out)
+  dplyr::pull(out)
+
+cat(entries, sep = "\n\n")
+
 ```
 
 
@@ -613,6 +803,35 @@ readGoogleSheets("Service") %>%
     out = three_entry(Position, Name, Year)
   ) %>% 
   pull(out)
+
+```
+
+
+`r header1("Fellowship & Awards")`
+
+```{r results = 'asis'}
+
+award_entry <- function(Year, Type, Desc) {
+  
+  
+  glue("
+\\begin{tabular}{p{0.8\\textwidth} p{0.2\\textwidth}  }
+
+  <<Type>> & <<Year>>  \\\\\\
+  <<Desc>> 
+
+\\end{tabular}
+
+", 
+.open = "<<", .close = ">>")
+}
+
+readGoogleSheets("FellowshipAwards") %>%
+   dplyr::arrange(desc(Year)) %>%
+    mutate(
+    out = award_entry(Year, Type, Desc)
+  ) %>% pull(out)
+  
 
 ```
 

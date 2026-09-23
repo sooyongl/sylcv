@@ -134,7 +134,11 @@ maketitle("Sooyong Lee, Ph.D.",
 `r header1("PROFESSIONAL SUMMARY")`
 
 \begin{flushleft}
-As a psychometrician, I specialize in applying contemporary statistical theories and techniques to my work. My research interests center around developing and utilizing statistical models, including structural equation modeling (SEM), multilevel modeling (MLM), item response theory (IRT), and mixture modeling. In my recent work, I have placed particular emphasis on Bayesian estimation as a means of modeling the relationships between variables.
+I develop statistical and measurement models to analyze educational data and apply them to practical problems in education. My research focuses on methods that help us better understand student development, differences across groups, and factors that shape assessment outcomes.
+
+At WIDA, I work with large-scale K–12 language assessment data on scaling, validation, and measurement invariance. I also use statistical models to predict and interpret assessment results. Looking ahead, I aim to extend this methodological work to emerging forms of educational data, including AI-assisted scoring and bias in AI-generated responses.
+
+I have also conducted longitudinal research on student development, including changes in growth mindset, academic emotions, and mathematics self-efficacy. By connecting methodological research with applied educational studies and large-scale assessment practice, I hope to collaborate across disciplines and produce evidence that informs educational practice and policy.
 \end{flushleft}
 
 `r header1("CONTACTS OF REFERENCES")`
@@ -486,25 +490,171 @@ readGoogleSheets("Presentation") %>%
 `r header1("RESEARCH")`
 
 ```{r results = 'asis'}
-research_entry <- function(a1, a2, a3, a4, note) {
-  glue("
-\\begin{tabular}{p{0.22\\textwidth}@{\\hspace{-10pt}}@{}p{0.6\\textwidth} p{0.2\\textwidth} }
+# research_entry <- function(a1, a2, a3, a4, note) {
+#   glue("
+# \\begin{tabular}{p{0.22\\textwidth}@{\\hspace{-10pt}}@{}p{0.6\\textwidth} p{0.2\\textwidth} }
+# 
+#   <<a1>> & <<a2>> & <<a3>> \\\\\\
+#          &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<note>>}   \\\\\\
+#          &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<a4>>}   \\\\\\
+# 
+# \\end{tabular}
+# 
+# ", 
+# .open = "<<", .close = ">>")
+# }
+# 
+# readGoogleSheets("Experience") %>%
+#   dplyr::arrange(desc(Year)) %>%
+#   mutate(
+#     out = research_entry(Position, Name, Year, Desc, note)
+#   ) %>% pull(out)
 
-  <<a1>> & <<a2>> & <<a3>> \\\\\\
-         &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<note>>}   \\\\\\
-         &  \\multicolumn{2}{p{0.7\\textwidth}}{- <<a4>>}   \\\\\\
 
-\\end{tabular}
+# Excel의 일반 텍스트를 LaTeX에서 안전하게 사용할 수 있도록 변환
+escape_latex <- function(x) {
+  x <- as.character(x)
 
-", 
-.open = "<<", .close = ">>")
+  stringr::str_replace_all(
+    x,
+    "[\\\\{}$&#_%~^]",
+    function(ch) {
+      switch(
+        ch,
+        "\\" = "\\textbackslash{}",
+        "{"  = "\\{",
+        "}"  = "\\}",
+        "$"  = "\\$",
+        "&"  = "\\&",
+        "#"  = "\\#",
+        "_"  = "\\_",
+        "%"  = "\\%",
+        "~"  = "\\textasciitilde{}",
+        "^"  = "\\textasciicircum{}"
+      )
+    }
+  )
 }
 
-readGoogleSheets("Experience") %>%
-  dplyr::arrange(desc(Year)) %>%
-  mutate(
-    out = research_entry(Position, Name, Year, Desc, note)
-  ) %>% pull(out)
+# 한 셀의 일반 문장과 불릿을 LaTeX 문단/목록으로 변환
+format_research_text <- function(x) { # x = a4
+  if (length(x) == 0 || is.na(x) || !nzchar(trimws(x))) {
+    return("")
+  }
+
+  x <- gsub("\r\n?", "\n", as.character(x))
+  lines <- strsplit(x, "\n", fixed = TRUE)[[1]]
+
+  # If a plain first line is followed by bullets, make it the first bullet
+if (
+  length(lines) > 1 &&
+  !grepl("^\\s*([•*]|-)\\s+", lines[1], perl = TRUE) &&
+  any(grepl("^\\s*([•*]|-)\\s+", lines[-1], perl = TRUE))
+) {
+  lines[1] <- paste0("• ",trimws(lines[1]))
+}
+  
+  output <- character()
+  in_list <- FALSE
+
+  for (line in lines) {
+    line <- trimws(line)
+
+    if (!nzchar(line)) next
+
+    is_bullet <- grepl("^([•*]|-)\\s+", line, perl = TRUE)
+
+    if (is_bullet) {
+      if (!in_list) {
+        output <- c(
+          output,
+          "\\begin{itemize}",
+          "\\setlength{\\topsep}{0pt}",
+          "\\setlength{\\itemsep}{0pt}",
+          "\\setlength{\\parsep}{0pt}",
+          "\\setlength{\\partopsep}{0pt}",
+          "\\setlength{\\parskip}{0pt}"
+        )
+        in_list <- TRUE
+      }
+
+      item <- sub("^([•*]|-)\\s+", "", line, perl = TRUE)
+      output <- c(output, paste0("\\item ", escape_latex(item)))
+
+    } else {
+      if (in_list) {
+        output <- c(output, "\\end{itemize}")
+        in_list <- FALSE
+      }
+
+      output <- c(
+        output,
+        paste0(#"\\noindent ", 
+               escape_latex(line), "\\par")
+      )
+    }
+  }
+
+  if (in_list) {
+    output <- c(output, "\\end{itemize}")
+  }
+
+  paste(output, collapse = "\n")
+}
+
+
+
+research_entry <- function(a1, a2, a3, a4) {
+  
+  
+  # a1=entries$Position[1]
+  # a2=entries$Name[1]
+  # a3=entries$Year[1]
+  # a4=entries$Desc[1]
+  
+  mapply(
+    FUN = function(a1, a2, a3, a4) {
+
+      # Older Korean_desc cells contain a paragraph without a bullet.
+      if (!is.na(a4) &&
+          nzchar(trimws(a4)) &&
+          !grepl("(?m)^\\s*[•*-]\\s+", a4, perl = TRUE)) {
+        a4 <- paste0("• ", a4)
+      }
+
+      heading <- paste0(
+        "\\begin{tabular}{",
+        "p{0.22\\textwidth}@{\\hspace{10pt}}@{}",
+        "p{0.6\\textwidth} p{0.2\\textwidth}",
+        "}\n",
+        "\\textbf{", escape_latex(a1), "} & ",
+        escape_latex(a2), " & ",
+        escape_latex(a3), " ",
+        strrep("\\", 2), "\n",
+        "\\end{tabular}\\par\\vspace{-10pt}\n"
+      )
+
+      paste0(
+        heading,
+        format_research_text(a4), "\n",
+        '\\vspace{-7pt}'
+      )
+    },
+    a1, a2, a3, a4,
+    USE.NAMES = FALSE
+  )
+}
+
+
+entries <- readGoogleSheets("Experience") %>%
+  dplyr::arrange(dplyr::desc(Year)) %>%
+  dplyr::mutate(
+    out = research_entry(Position, Name, Year, Desc)
+  ) %>%
+  dplyr::pull(out)
+
+cat(entries, sep = "\n\n")
+
 
 ```
 
@@ -534,7 +684,6 @@ teaching_entry <- function(Year, Position, Name, note, Desc) {
 .open = "<<", .close = ">>")
 }
 
-
 readGoogleSheets("Teaching") %>%
     dplyr::arrange(desc(Year)) %>%
   filter(type == "formal") %>% 
@@ -545,36 +694,51 @@ readGoogleSheets("Teaching") %>%
   pull(out)
 ```
 
-`r header2("Informal Special Talks")`
+`r header2("Invited Special Talks")`
 
 ```{r results = 'asis'}
-talk_entry <- function(Year, Position, Name, note, Desc, link) {
+talk_entry <- function(Year, Position, Name, note, Desc, link, link0) {
+  mapply(
+    FUN = function(Year, Position, Name, note, Desc, link, link0) {
+      name_tex  <- escape_latex(Name)
+      year_tex  <- escape_latex(Year)
+      desc_tex  <- escape_latex(Desc)
+      link0_tex <- escape_latex(link0)
 
+      glue::glue(
+        r"(
+\noindent
+\parbox[t]{0.78\linewidth}{<<name_tex>>}\hfill
+\parbox[t]{0.18\linewidth}{\raggedleft <<year_tex>>}\par
+\vspace{-10pt}
+\begin{itemize}
+\setlength{\topsep}{0pt}
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\item Link: \href{<<link>>}{\textcolor{blue}{<<link0_tex>>}}
+\item <<desc_tex>>
+\end{itemize}
 
-  glue("
-\\begin{tabular}{p{0.8\\textwidth} p{0.2\\textwidth}  }
-
-  <<Name>> & <<Year>>  \\\\\\
-  \\href{<<link>>}{Link to Materials} &   \\\\\\
-  <<Desc>> &   \\\\\\
-
-\\end{tabular}
-
-",
-.open = "<<", .close = ">>")
+\vspace{-20pt}
+)",
+        .open = "<<", .close = ">>"
+      )
+    },
+    Year, Position, Name, note, Desc, link, link0,
+    USE.NAMES = FALSE
+  )
 }
 
-
-
-
-readGoogleSheets("Teaching") %>%
-    dplyr::arrange(desc(Year)) %>%
-  filter(type == "informal") %>%
-  mutate(
-    # Desc = "Univeristy of Texas at Austin",
-    out = talk_entry(Year, Position, Name, note, Desc, link)
+entries <- readGoogleSheets("Teaching") %>%
+  dplyr::arrange(dplyr::desc(Year)) %>%
+  dplyr::filter(type == "informal") %>%
+  dplyr::mutate(
+    out = talk_entry(Year, Position, Name, note, Desc, link, link0)
   ) %>%
-  pull(out)
+  dplyr::pull(out)
+
+cat(entries, sep = "\n\n")
+
 ```
 
 `r header1("PROGRAMS")`
@@ -617,6 +781,34 @@ readGoogleSheets("Service") %>%
     out = three_entry(Position, Name, Year)
   ) %>% 
   pull(out)
+
+```
+
+`r header1("Fellowship & Awards")`
+
+```{r results = 'asis'}
+
+award_entry <- function(Year, Type, Desc) {
+  
+  
+  glue("
+\\begin{tabular}{p{0.8\\textwidth} p{0.2\\textwidth}  }
+
+  <<Type>> & <<Year>>  \\\\\\
+  <<Desc>> 
+
+\\end{tabular}
+
+", 
+.open = "<<", .close = ">>")
+}
+
+readGoogleSheets("FellowshipAwards") %>%
+   dplyr::arrange(desc(Year)) %>%
+    mutate(
+    out = award_entry(Year, Type, Desc)
+  ) %>% pull(out)
+  
 
 ```
 
