@@ -715,7 +715,7 @@ talk_entry <- function(Year, Position, Name, note, Desc, link, link0) {
 \setlength{\topsep}{0pt}
 \setlength{\itemsep}{0pt}
 \setlength{\parsep}{0pt}
-\item Link: \href{<<link>>}{\textcolor{blue}{<<link0_tex>>}}
+\item Materials: \href{<<link>>}{\textcolor{blue}{<<link0_tex>>}}
 \item <<desc_tex>>
 \end{itemize}
 
