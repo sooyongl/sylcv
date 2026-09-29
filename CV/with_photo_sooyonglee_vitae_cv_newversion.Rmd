@@ -504,7 +504,7 @@ readGoogleSheets("Presentation") %>%
   # pull(out)
 ```
 
-`r header1("RESEARCH")`
+`r header1("PROFESSIONAL EXPERIENCE")`
 
 ```{r results = 'asis'}
 # research_entry <- function(a1, a2, a3, a4, note) {
@@ -621,7 +621,7 @@ if (
 
 
 
-research_entry <- function(a1, a2, a3, a4) {
+research_entry <- function(a1, a2, a3, a4, a5) {
   
   
   # a1=entries$Position[1]
@@ -630,7 +630,7 @@ research_entry <- function(a1, a2, a3, a4) {
   # a4=entries$Desc[1]
   
   mapply(
-    FUN = function(a1, a2, a3, a4) {
+    FUN = function(a1, a2, a3, a4, a5) {
 
       # Older Korean_desc cells contain a paragraph without a bullet.
       if (!is.na(a4) &&
@@ -639,25 +639,34 @@ research_entry <- function(a1, a2, a3, a4) {
         a4 <- paste0("• ", a4)
       }
 
-      heading <- paste0(
-        "\\begin{tabular}{",
-        "p{0.22\\textwidth}@{\\hspace{10pt}}@{}",
-        "p{0.6\\textwidth} p{0.2\\textwidth}",
-        "}\n",
-        "\\textbf{", escape_latex(a1), "} & ",
-        escape_latex(a2), " & ",
-        escape_latex(a3), " ",
-        strrep("\\", 2), "\n",
-        "\\end{tabular}\\par\\vspace{-10pt}\n"
-      )
+      # heading <- paste0(
+      #   "\\begin{tabular}{",
+      #   "p{0.22\\textwidth}@{\\hspace{10pt}}@{}",
+      #   "p{0.6\\textwidth} p{0.2\\textwidth}",
+      #   "}\n",
+      #   "\\textbf{", escape_latex(a1), "} & ",
+      #   escape_latex(a2), " & ",
+      #   escape_latex(a3), " ",
+      #   strrep("\\", 2), "\n",
+      #   "\\end{tabular}\\par\\vspace{-10pt}\n"
+      # )
 
+      heading <- paste0(
+  "\\begin{tabular}{@{}p{0.78\\linewidth}@{}p{0.22\\linewidth}@{}}\n",
+  "\\textbf{", escape_latex(a1), "} & \\hfill{}",
+  escape_latex(a3), " \\\\\n",
+  "\\textit{", escape_latex(a2), "} & \\hfill{}",
+  escape_latex(a5), " \\\\\n",
+  "\\end{tabular}\\par\\vspace{-10pt}\n"
+)
+      
       paste0(
         heading,
         format_research_text(a4), "\n",
         '\\vspace{-7pt}'
       )
     },
-    a1, a2, a3, a4,
+    a1, a2, a3, a4,a5,
     USE.NAMES = FALSE
   )
 }
@@ -666,7 +675,7 @@ research_entry <- function(a1, a2, a3, a4) {
 entries <- readGoogleSheets("Experience") %>%
   dplyr::arrange(dplyr::desc(Year)) %>%
   dplyr::mutate(
-    out = research_entry(Position, Name, Year, Korean_desc)
+    out = research_entry(Position, Name, Year, Desc, HQ)
   ) %>%
   dplyr::pull(out)
 
@@ -678,7 +687,7 @@ cat(entries, sep = "\n\n")
 
 \par\bigskip
 
-`r header1("TEACHING")`
+`r header1("TEACHING EXPERIENCE")`
 
 `r header2("Teaching Assistant")`
 
